@@ -1,0 +1,29 @@
+*** Setting ***
+Library		Selenium2Library
+Suite Setup	Go to Internet Security	
+
+*** Variables ***
+${HOMEPAGE}		https://www2.f-secure.gtn/en/web/home_global/internet-security
+${BROWSER}		firefox
+
+
+*** Test Cases ***	
+Internet Security
+	Element Should Contain		
+
+
+
+*** Keywords ***
+Element Should Contain
+	Page Should Contain Element	//span[@class="fmp-devices"]
+	Page Should Contain Element	//span[@class="fmp-years"]
+	Page Should Contain Element	//span[@class="font-pink fmp-onlypromo"]
+	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]	
+	
+		
+
+Go to Internet Security	
+	Open browser	${HOMEPAGE}		${BROWSER}
+
+
+

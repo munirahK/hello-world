@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20151028 13:32:16.217" generator="Robot 2.9.1 (Python 2.7.6 on linux2)">
+<suite source="/home/munirah/git/hello-world/Multiprice/multiprice.txt" id="s1" name="Multiprice">
+<kw type="setup" name="Go to Internet Security">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${HOMEPAGE}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20151028 13:32:16.357" level="INFO">Opening browser 'firefox' to base url 'https://www2.f-secure.gtn/en/web/home_global/internet-security'</msg>
+<status status="PASS" endtime="20151028 13:32:31.574" starttime="20151028 13:32:16.356"></status>
+</kw>
+<status status="PASS" endtime="20151028 13:32:31.575" starttime="20151028 13:32:16.355"></status>
+</kw>
+<test id="s1-t1" name="Element 1">
+<kw name="Element Should Contain">
+<arguments>
+<arg>1</arg>
+<arg>1</arg>
+<arg>€20</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>${devices}</arg>
+<arg>${years}</arg>
+<arg>${price}</arg>
+</arguments>
+<status status="PASS" endtime="20151028 13:32:33.233" starttime="20151028 13:32:31.578"></status>
+</kw>
+<kw name="Page Should Contain Element" library="Selenium2Library">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>xpath=//span[@class="fmp-devices"]</arg>
+</arguments>
+<msg timestamp="20151028 13:32:33.273" level="INFO">Current page contains element 'xpath=//span[@class="fmp-devices"]'.</msg>
+<status status="PASS" endtime="20151028 13:32:33.274" starttime="20151028 13:32:33.234"></status>
+</kw>
+<kw name="Page Should Contain Element" library="Selenium2Library">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//span[@class="fmp-years"]</arg>
+</arguments>
+<msg timestamp="20151028 13:32:33.299" level="INFO">Current page contains element '//span[@class="fmp-years"]'.</msg>
+<status status="PASS" endtime="20151028 13:32:33.299" starttime="20151028 13:32:33.275"></status>
+</kw>
+<kw name="Page Should Contain Element" library="Selenium2Library">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//span[@class="fmp-price fmp-promo-price"]</arg>
+</arguments>
+<msg timestamp="20151028 13:32:33.333" level="INFO">Current page contains element '//span[@class="fmp-price fmp-promo-price"]'.</msg>
+<status status="PASS" endtime="20151028 13:32:33.333" starttime="20151028 13:32:33.300"></status>
+</kw>
+<status status="PASS" endtime="20151028 13:32:33.334" starttime="20151028 13:32:31.577"></status>
+</kw>
+<status status="PASS" endtime="20151028 13:32:33.335" critical="yes" starttime="20151028 13:32:31.575"></status>
+</test>
+<test id="s1-t2" name="Element 2">
+<kw name="Element Should Contain">
+<arguments>
+<arg>3</arg>
+<arg>2</arg>
+<arg>€60.99</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>${devices}</arg>
+<arg>${years}</arg>
+<arg>${price}</arg>
+</arguments>
+<status status="PASS" endtime="20151028 13:32:33.436" starttime="20151028 13:32:33.338"></status>
+</kw>
+<kw name="Page Should Contain Element" library="Selenium2Library">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>xpath=//span[@class="fmp-devices"]</arg>
+</arguments>
+<msg timestamp="20151028 13:32:33.645" level="INFO">Current page contains element 'xpath=//span[@class="fmp-devices"]'.</msg>
+<status status="PASS" endtime="20151028 13:32:33.646" starttime="20151028 13:32:33.437"></status>
+</kw>
+<kw name="Page Should Contain Element" library="Selenium2Library">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//span[@class="fmp-years"]</arg>
+</arguments>
+<msg timestamp="20151028 13:32:33.672" level="INFO">Current page contains element '//span[@class="fmp-years"]'.</msg>
+<status status="PASS" endtime="20151028 13:32:33.673" starttime="20151028 13:32:33.646"></status>
+</kw>
+<kw name="Page Should Contain Element" library="Selenium2Library">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//span[@class="fmp-price fmp-promo-price"]</arg>
+</arguments>
+<msg timestamp="20151028 13:32:33.694" level="INFO">Current page contains element '//span[@class="fmp-price fmp-promo-price"]'.</msg>
+<status status="PASS" endtime="20151028 13:32:33.695" starttime="20151028 13:32:33.673"></status>
+</kw>
+<status status="PASS" endtime="20151028 13:32:33.695" starttime="20151028 13:32:33.337"></status>
+</kw>
+<status status="PASS" endtime="20151028 13:32:33.696" critical="yes" starttime="20151028 13:32:33.336"></status>
+</test>
+<test id="s1-t3" name="Element 3">
+<kw name="Element Should Contain">
+<arguments>
+<arg>3</arg>
+<arg>2</arg>
+<arg>€99.90</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>${devices}</arg>
+<arg>${years}</arg>
+<arg>${price}</arg>
+</arguments>
+<status status="PASS" endtime="20151028 13:32:33.781" starttime="20151028 13:32:33.698"></status>
+</kw>
+<kw name="Page Should Contain Element" library="Selenium2Library">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>xpath=//span[@class="fmp-devices"]</arg>
+</arguments>
+<msg timestamp="20151028 13:32:33.807" level="INFO">Current page contains element 'xpath=//span[@class="fmp-devices"]'.</msg>
+<status status="PASS" endtime="20151028 13:32:33.807" starttime="20151028 13:32:33.782"></status>
+</kw>
+<kw name="Page Should Contain Element" library="Selenium2Library">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//span[@class="fmp-years"]</arg>
+</arguments>
+<msg timestamp="20151028 13:32:33.837" level="INFO">Current page contains element '//span[@class="fmp-years"]'.</msg>
+<status status="PASS" endtime="20151028 13:32:33.838" starttime="20151028 13:32:33.808"></status>
+</kw>
+<kw name="Page Should Contain Element" library="Selenium2Library">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//span[@class="fmp-price fmp-promo-price"]</arg>
+</arguments>
+<msg timestamp="20151028 13:32:33.861" level="INFO">Current page contains element '//span[@class="fmp-price fmp-promo-price"]'.</msg>
+<status status="PASS" endtime="20151028 13:32:33.861" starttime="20151028 13:32:33.838"></status>
+</kw>
+<status status="PASS" endtime="20151028 13:32:33.862" starttime="20151028 13:32:33.697"></status>
+</kw>
+<status status="PASS" endtime="20151028 13:32:33.862" critical="yes" starttime="20151028 13:32:33.697"></status>
+</test>
+<status status="PASS" endtime="20151028 13:32:33.863" starttime="20151028 13:32:16.218"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="3">Critical Tests</stat>
+<stat fail="0" pass="3">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Multiprice" pass="3">Multiprice</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

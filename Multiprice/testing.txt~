@@ -1,0 +1,28 @@
+*** Variables ***
+# URL for CI server. Override with your local server if run elsewhere.
+${SERVER URL}        http://sre-12.example.com/
+${BROWSER}           Actual value set dynamically at suite setup
+
+*** Keywords ***
+Title Should Begin With
+  [Arguments]          ${beginning}
+  ${title} =           Get Title
+  Should Start With    ${title}   ${beginning}
+
+Suite Setup
+  ${BROWSER} =        Get Current Browser
+  Set Suite Variable  ${BROWSER}
+
+*** Test Cases ***
+Withdraw From Account
+  Withdraw From Account    $50
+  Withdraw Should Have Succeeded
+
+*** Keywords ***
+Withdraw From Account
+  [arguments]   ${amount}
+  ${status} =   Withdraw From User Account  ${USER}  ${amount}
+  Set Test Variable   ${STATUS}    ${status}
+
+Withdraw Should Have Succeeded
+  Should Be Equal   ${STATUS}   SUCCESS

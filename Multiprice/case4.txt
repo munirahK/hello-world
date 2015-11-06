@@ -1,0 +1,24 @@
+*** Setting ***
+Library		Selenium2Library
+Suite Setup	Go to F-secure Page
+
+
+*** Variables ***
+${HOMEPAGE}		https://www.f-secure.com/en/welcome
+${BROWSER}		firefox
+
+
+
+*** Test Cases ***
+
+Find F-Secure Page	
+	Go to F-Secure Page		
+
+*** Keywords ***
+		
+Go to F-Secure Page
+	Open browser	${HOMEPAGE}	${BROWSER}			
+
+
+
+	

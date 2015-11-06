@@ -1,0 +1,58 @@
+*** Setting ***
+Library		Selenium2Library
+Suite Setup	Go to Internet Security	
+
+*** Variables ***
+${HOMEPAGE}		https://${DOMAIN}/${LOCALES}/web/home_global/internet-security
+${BROWSER}		firefox
+${STRING}		.
+${LOCALES}		en
+${DOMAIN}		www2.f-secure.gtn
+
+*** Test Cases ***	
+Element 1
+	Element Should Contain		1	1	30	20
+
+Element 2
+	Element Should Contain		3	2	70${STRING}99	60${STRING}99
+					
+Element 3
+	Element Without Promo		3	2	99${STRING}90
+	
+	
+			
+
+
+*** Keywords ***
+Element Should Contain
+	[Arguments]	${devices}	${years}	${price}	${promo-price}	
+	Wait Until Page Contains	${devices}		
+	Page Should Contain Element	xpath=//span[@class="fmp-devices"]
+
+	Wait Until Page Contains	${years}
+	Page Should Contain Element	//span[@class="fmp-years"]
+
+	Wait Until Page Contains	${price}
+	Page Should Contain Element	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
+
+	Wait Until Page Contains	${promo-price}
+	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]	
+	
+
+		
+Element Without Promo
+	[Arguments]	${devices}	${years}	${promo-price}
+	Wait Until Page Contains	${devices}		
+	Page Should Contain Element	xpath=//span[@class="fmp-devices"]
+
+	Wait Until Page Contains	${years}
+	Page Should Contain Element	//span[@class="fmp-years"]
+
+	Wait Until Page Contains	${promo-price}
+	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]
+
+Go to Internet Security	
+	Open browser	${HOMEPAGE}		${BROWSER}
+
+
+
