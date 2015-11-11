@@ -28,6 +28,3 @@ ${LOCALES}		pl
 ${DOMAIN}	
 
 https://www2.f-secure.gtn/${LOCALES}/web/home_global/internet-security
-
-
-//div[@data-sku="Test1D12M"]

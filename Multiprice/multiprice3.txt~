@@ -1,6 +1,6 @@
 *** Setting ***
 Library		Selenium2Library
-Suite Setup	Verify Multiprice
+Suite Setup	Go to Internet Security	
 
 *** Variables ***
 ${HOMEPAGE}		https://${DOMAIN}/${LOCALES}/web/home_global/internet-security
@@ -9,21 +9,28 @@ ${LOCALES}		en
 ${DOMAIN}		www2.f-secure.gtn
 
 
-*** Test Cases ***			Device(s)	Month(s)	Price		Promo-price				
-//div[@data-sku="Test1D12M"]
-	@{Test1D12M}	Create List	1		12		30		20
+		
 
-//div[@data-sku="Test3D24M"]
-	@{Test3D24M}	Create List	3		24		70		60
+*** Test Cases ***
+
+Element 1
+	Element Should Contain		1	12	30	20
+
+Element 2
+	Element Should Contain		3	24	70	60
+					
+Element 3
+	Element Without Promo		3	36	rm99
 	
-//div[@data-sku="Test3D36M"]
-	@{Test3D36M}	No Promo	3		36		99		
 	
+			
+
 
 *** Keywords ***
 
-Create List
-	[Arguments]	${devices}	${months}	${price}	${promo-price}
+Element Should Contain
+	[Arguments]	${devices}	${months}	${price}	${promo-price}	
+	
 	Wait Until Page Contains	${devices}
 	Page Should Contain Element	//span[@class="fmp-devices"]	
 	
@@ -36,8 +43,11 @@ Create List
 
 	Wait Until Page Contains	${promo-price}
 	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]	
+	
 
-No Promo
+
+		
+Element Without Promo
 	[Arguments]	${devices}	${months}	${promo-price}
 	Wait Until Page Contains	${devices}		
 	Page Should Contain Element	xpath=//span[@class="fmp-devices"]
@@ -48,7 +58,8 @@ No Promo
 	Wait Until Page Contains	${promo-price}
 	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]
 
-
-Verify Multiprice	
+Go to Internet Security	
 	Open browser	${HOMEPAGE}		${BROWSER}
+
+
 

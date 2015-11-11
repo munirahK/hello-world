@@ -11,13 +11,13 @@ ${DOMAIN}		www2.f-secure.gtn
 
 *** Test Cases ***			Device(s)	Month(s)	Price		Promo-price				
 //div[@data-sku="Test1D12M"]
-	@{Test1D12M}	Create List	1		12		30		20
+	@{Test1D12M}	Create List		1		12		30		20
 
 //div[@data-sku="Test3D24M"]
-	@{Test3D24M}	Create List	3		24		70		60
+	@{Test3D24M}	Create List		3		24		70		60
 	
 //div[@data-sku="Test3D36M"]
-	@{Test3D36M}	No Promo	3		36		99		
+	@{Test3D36M}	No Promo		3		36		99		
 	
 
 *** Keywords ***

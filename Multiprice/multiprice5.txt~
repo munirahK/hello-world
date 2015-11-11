@@ -14,48 +14,61 @@ ${DOMAIN}		www2.f-secure.gtn
 *** Test Cases ***
 
 Element 1
-	Element Should Contain		88	12	30	20
+	//div[@data-sku="Test1D12M"]		1	12	30	20
 
 Element 2
-	Element Should Contain		3	24	70	60
+	//div[@data-sku="Test3D24M"]		3	24	70	60
 					
 Element 3
-	Element Without Promo		3	36	99
-	
+	//div[@data-sku="Test3D36M"]		3	36	99	0
 	
 			
 
 
 *** Keywords ***
-
-Element Should Contain
+//div[@data-sku="Test1D12M"]
 	[Arguments]	${devices}	${months}	${price}	${promo-price}	
 	
-	Wait Until Page Contains	${devices}
+	Should Be Equal		${devices}	1
+	Page Should Contain Element	//span[@class="fmp-devices"]	
+	
+	Should Be Equal		${months}	12
+	Page Should Contain Element	//span[@class="fmp-months"]
+
+	Should Be Equal		${price}	30
+	Page Should Contain Element	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
+
+	Should Be Equal		${promo-price}	20
+	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]	
+	
+//div[@data-sku="Test3D24M"]
+	[Arguments]	${devices}	${months}	${price}	${promo-price}	
+	Should Be Equal		${devices}	3
 	Page Should Contain Element	//span[@class="fmp-devices"]	
 	
 
-	Wait Until Page Contains	${months}
+	Should Be Equal		${months}	24
 	Page Should Contain Element	//span[@class="fmp-months"]
 
-	Wait Until Page Contains	${price}
+	Should Be Equal		${price}	70
 	Page Should Contain Element	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
 
-	Wait Until Page Contains	${promo-price}
+	Should Be Equal		${promo-price}	60
 	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]	
 	
 
 
 		
-Element Without Promo
+//div[@data-sku="Test3D36M"]
 	[Arguments]	${devices}	${months}	${promo-price}
-	Wait Until Page Contains	${devices}		
+	
+	Should Be Equal		${devices}	3	
 	Page Should Contain Element	xpath=//span[@class="fmp-devices"]
 
-	Wait Until Page Contains	${months}
+	Should Be Equal		${months}	36
 	Page Should Contain Element	//span[@class="fmp-months"]
 
-	Wait Until Page Contains	${promo-price}
+	Should Be Equal		${promo-price}	99
 	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]
 
 Go to Internet Security	

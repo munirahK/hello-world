@@ -20,7 +20,7 @@ Element 2
 	//div[@data-sku="Test3D24M"]		3	24	70	60
 					
 Element 3
-	//div[@data-sku="Test3D36M"]		3	36	99
+	//div[@data-sku="Test3D36M"]		3	36	99	
 	
 			
 

@@ -3,7 +3,7 @@ Library		Selenium2Library
 Suite Setup	Go to Internet Security	
 
 *** Variables ***
-${HOMEPAGE}		https://www2.f-secure.gtn/en/web/home_global/internet-security
+${HOMEPAGE}		https://www2.f-secure.gtn/pl/web/home_global/internet-security
 ${BROWSER}		firefox
 
 
@@ -22,11 +22,13 @@ Element 3
 
 
 *** Keywords ***
+
 Element Should Contain
-	[Arguments]	${devices}	${years}	${price}
-	Wait Until Page Contains	${devices}	${years}	${price}
+	[Arguments]	${devices}	${months}	${price}
+
+	Wait Until Page Contains	${devices}	${months}	${price}
 	Page Should Contain Element	xpath=//span[@class="fmp-devices"]
-	Page Should Contain Element	//span[@class="fmp-years"]
+	Page Should Contain Element	//span[@class="fmp-months"]
 	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]	
 	
 		

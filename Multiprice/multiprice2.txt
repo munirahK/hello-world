@@ -9,13 +9,13 @@ ${LOCALES}		pl
 
 *** Test Cases ***	
 Element 1
-	Element Should Contain		//span[@class="fmp-devices"]	//span[@class="fmp-years"]	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]	//span[@class="fmp-price fmp-promo-price"]
+	Element Should Contain		//span[@class="fmp-devices"]	//span[@class="fmp-months"]	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]	//span[@class="fmp-price fmp-promo-price"]
 
 Element 2
-	Element Should Contain		//span[@class="fmp-devices"]	//span[@class="fmp-years"]	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]	//span[@class="fmp-price fmp-promo-price"]
+	Element Should Contain		//span[@class="fmp-devices"]	//span[@class="fmp-months"]	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]	//span[@class="fmp-price fmp-promo-price"]
 					
 Element 3
-	Element Without Promo		//span[@class="fmp-devices"]	//span[@class="fmp-years"]	//span[@class="fmp-price fmp-promo-price"]
+	Element Without Promo		//span[@class="fmp-devices"]	//span[@class="fmp-months"]	//span[@class="fmp-price fmp-promo-price"]
 	
 	
 			
@@ -23,20 +23,20 @@ Element 3
 
 *** Keywords ***
 Element Should Contain
-	[Arguments]	${devices}	${years}	${price-promo}	${price}
+	[Arguments]	${devices}	${months}	${price-promo}	${price}
 	
 	Page Should Contain Element	${devices}
-	Page Should Contain Element	${years}
+	Page Should Contain Element	${months}
 	Page Should Contain Element	${price-promo}
 	Page Should Contain Element	${price}	
 	
 
 		
 Element Without Promo
-	[Arguments]	${devices}	${years}	${price}
+	[Arguments]	${devices}	${months}	${price}
 	
 	Page Should Contain Element	xpath=//span[@class="fmp-devices"]
-	Page Should Contain Element	//span[@class="fmp-years"]
+	Page Should Contain Element	//span[@class="fmp-months"]
 	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]
 
 Go to Internet Security	

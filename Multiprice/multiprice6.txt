@@ -1,0 +1,12 @@
+*** Setting ***
+Library		Selenium2Library
+Suite Setup	Verify Multiprice
+
+*** Variables ***
+${HOMEPAGE}		https://${DOMAIN}/${LOCALES}/web/home_global/internet-security
+${BROWSER}		firefox
+${LOCALES}		en
+${DOMAIN}		www2.f-secure.gtn
+
+*** Test Cases ***
+*** Keywords ***
