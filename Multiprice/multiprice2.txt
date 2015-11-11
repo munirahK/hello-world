@@ -3,19 +3,19 @@ Library		Selenium2Library
 Suite Setup	Go to Internet Security	
 
 *** Variables ***
-${HOMEPAGE}		https://www2.f-secure.gtn/en/web/home_global/internet-security
+${HOMEPAGE}		https://www2.f-secure.gtn/${LOCALES}/web/home_global/internet-security
 ${BROWSER}		firefox
-
+${LOCALES}		pl
 
 *** Test Cases ***	
 Element 1
-	Element Should Contain		1	1	€30	€20
+	Element Should Contain		//span[@class="fmp-devices"]	//span[@class="fmp-years"]	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]	//span[@class="fmp-price fmp-promo-price"]
 
 Element 2
-	Element Should Contain		3	2	€70.99	€60.99
+	Element Should Contain		//span[@class="fmp-devices"]	//span[@class="fmp-years"]	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]	//span[@class="fmp-price fmp-promo-price"]
 					
 Element 3
-	Element Without Promo		3	2	€99.90
+	Element Without Promo		//span[@class="fmp-devices"]	//span[@class="fmp-years"]	//span[@class="fmp-price fmp-promo-price"]
 	
 	
 			
@@ -24,17 +24,17 @@ Element 3
 *** Keywords ***
 Element Should Contain
 	[Arguments]	${devices}	${years}	${price-promo}	${price}
-	Wait Until Page Contains	${devices}	${years}	${price}
-	Page Should Contain Element	xpath=//span[@class="fmp-devices"]
-	Page Should Contain Element	//span[@class="fmp-years"]
-	Page Should Contain Element	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
-	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]	
+	
+	Page Should Contain Element	${devices}
+	Page Should Contain Element	${years}
+	Page Should Contain Element	${price-promo}
+	Page Should Contain Element	${price}	
 	
 
 		
 Element Without Promo
 	[Arguments]	${devices}	${years}	${price}
-	Wait Until Page Contains	${devices}	${years}	${price}
+	
 	Page Should Contain Element	xpath=//span[@class="fmp-devices"]
 	Page Should Contain Element	//span[@class="fmp-years"]
 	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price"]
