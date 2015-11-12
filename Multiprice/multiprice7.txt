@@ -29,5 +29,25 @@ ${promo-price_3}	99
 
 *** Test Cases ***
 
+Verify Multiprice for SKU Test1D12M
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]
+	Page Should Contain Element	//span[@class="fmp-devices" and contains(text(),'1 device')]
+	Page Should Contain Element	//span[@class="fmp-months" and contains(text(),'12 months')]
+	Page Should Contain Element	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'€30')]
+	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price" and contains(text(),'€20')]
+	
+	@{Test1D12M}	Create List	1	12	30	20
+	
+	
+	
+	
 
 *** Keywords ***
+
+Create List
+	[Arguments]		${devices1}	${months1}	${price1}	${promo-price1}
+	Run Keyword If		'${devices1}'=='${devices_1}'	
+	
+Go to Internet Security	
+	Open browser	${HOMEPAGE}		${BROWSER}
+
