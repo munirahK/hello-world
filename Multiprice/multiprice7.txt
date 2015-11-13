@@ -30,35 +30,33 @@ ${promo-price_3}	99
 *** Test Cases ***
 
 Verify Multiprice for SKU Test1D12M
-	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]
-	Page Should Contain Element	//span[@class="fmp-devices" and contains(text(),'1 device')]
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="fmp-devices" and contains(text(),'1 device')]
 	Number of Devices		${devices_1}
-	Page Should Contain Element	//span[@class="fmp-months" and contains(text(),'12 months')]
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="fmp-months" and contains(text(),'12 months')]
 	Number of Months		${months_1}
-	Page Should Contain Element	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'€30')]
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'€30')]
 	Normal Price			${price_1}
-	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price" and contains(text(),'€20')]
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="fmp-price fmp-promo-price" and contains(text(),'€20')]
 	Promo Price			${promo-price_1}
+	
 
 Verify Multiprice for SKU Test3D24M
-	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]
-	Page Should Contain Element	//span[@class="fmp-devices" and contains(text(),'3 devices')]
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="fmp-devices" and contains(text(),'3 devices')]
 	Number of Devices		${devices_2}
-	Page Should Contain Element	//span[@class="fmp-months" and contains(text(),'24 months')]
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="fmp-months" and contains(text(),'24 months')]
 	Number of Months		${months_2}
-	Page Should Contain Element	//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'€70')]
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'€70')]
 	Normal Price			${price_2}
-	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price" and contains(text(),'€60')]
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="fmp-price fmp-promo-price" and contains(text(),'€60')]
 	Promo Price			${promo-price_2}
 
 Verify Multiprice for SKU Test3D36M
-	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]
-	Page Should Contain Element	//span[@class="fmp-devices" and contains(text(),'3 devices')]
-	Number of Devices		${devices_1}
-	Page Should Contain Element	//span[@class="fmp-months" and contains(text(),'36 months')]
-	Number of Months		${months_1}
-	Page Should Contain Element	//span[@class="fmp-price fmp-promo-price" and contains(text(),'€99')]
-	Promo Price			${promo-price_1}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]//span[@class="fmp-devices" and contains(text(),'3 devices')]
+	Number of Devices		${devices_3}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]//span[@class="fmp-months" and contains(text(),'36 months')]
+	Number of Months		${months_3}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]//span[@class="fmp-price fmp-promo-price" and contains(text(),'€99')]
+	Promo Price			${promo-price_3}
 	
 
 *** Keywords ***
@@ -76,6 +74,8 @@ Promo Price
 	[Arguments]	${promo-price}
 	Page Should Contain	${promo-price}
 
+
+	
 	
 Go to Internet Security	
 	Open browser	${HOMEPAGE}		${BROWSER}
