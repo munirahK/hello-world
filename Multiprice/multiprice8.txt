@@ -1,0 +1,109 @@
+*** Setting ***
+Library		Selenium2Library
+Suite Setup	Go to Internet Security
+
+*** Variables ***
+${HOMEPAGE}		https://${DOMAIN}/${LOCALES}/web/home_global/internet-security
+${BROWSER}		firefox
+${LOCALES}		en
+${DOMAIN}		www2.f-secure.gtn
+
+# Multiprice for SKU Test1D12M
+${devices_1}		1 device
+${months_1}		12 months
+${price_1}		€30 
+${promo-price_1}	€20
+
+# Multiprice for SKU Test3D24M
+${devices_2}		3 devices
+${months_2}		24 months
+${price_2}		€70
+${promo-price_2}	€60
+
+# Multiprice for SKU Test3D36M
+${devices_3}		3 devices
+${months_3}		36 months
+${promo-price_3}	€99
+
+# Locator for SKU Test1D12M
+${locator_sku-Test1D12M}	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]
+${locator_devices_1}		//span[@class="fmp-devices" and contains(text(),'1 device')]
+${locator_months_1}		//span[@class="fmp-months" and contains(text(),'12 months')]
+${locator_price_1}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'€30')]
+${locator_promo-price_1}	//span[@class="fmp-price fmp-promo-price" and contains(text(),'€20')]
+
+
+# Locator for SKU Test3D24M
+${locator_sku-Test3D24M}	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]
+${locator_devices_2}		//span[@class="fmp-devices" and contains(text(),'3 devices')]
+${locator_months_2}		//span[@class="fmp-months" and contains(text(),'24 months')]
+${locator_price_2}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'€70')]
+${locator_promo-price_2}	//span[@class="fmp-price fmp-promo-price" and contains(text(),'€60')]
+
+# Locator for SKU Test3D36M
+${locator_sku-Test3D36M}	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]
+${locator_devices_3}		//span[@class="fmp-devices" and contains(text(),'3 devices')]
+${locator_months_3}		//span[@class="fmp-months" and contains(text(),'36 months')]
+${locator_promo-price_3}	//span[@class="fmp-price fmp-promo-price" and contains(text(),'€99')]
+
+
+*** Test Cases ***
+
+Verify Multiprice for SKU Test1D12M
+	Page Should Contain Element	${locator_sku-Test1D12M}${locator_devices_1}
+	Number of Devices		${devices_1}
+	Page Should Contain Element	${locator_sku-Test1D12M}${locator_months_1}
+	Number of Months		${months_1}
+	Page Should Contain Element	${locator_sku-Test1D12M}${locator_price_1}
+	Normal Price			${price_1}
+	Page Should Contain Element	${locator_sku-Test1D12M}${locator_promo-price_1}
+	Promo Price			${promo-price_1}
+	
+
+Verify Multiprice for SKU Test3D24M
+	Page Should Contain Element	${locator_sku-Test3D24M}${locator_devices_2}
+	Number of Devices		${devices_2}
+	Page Should Contain Element	${locator_sku-Test3D24M}${locator_months_2}
+	Number of Months		${months_2}
+	Page Should Contain Element	${locator_sku-Test3D24M}${locator_price_2}
+	Normal Price			${price_2}
+	Page Should Contain Element	${locator_sku-Test3D24M}${locator_promo-price_2}
+	Promo Price			${promo-price_2}
+
+Verify Multiprice for SKU Test3D36M
+	Page Should Contain Element	${locator_sku-Test3D36M}${locator_devices_3}
+	Number of Devices		${devices_3}
+	Page Should Contain Element	${locator_sku-Test3D36M}${locator_months_3}
+	Number of Months		${months_3}
+	Page Should Contain Element	${locator_sku-Test3D36M}${locator_promo-price_3}
+	Promo Price			${promo-price_3}
+	
+
+*** Keywords ***
+
+Number of Devices
+	[Arguments]	${devices}
+	:FOR    ${var}    IN	${devices}
+	\	Page Should Contain	${devices}
+	
+Number of Months	
+	[Arguments]	${months}
+	:FOR    ${var}	IN	${months}
+	\	Page Should Contain	${months}
+
+
+Normal Price		
+	[Arguments]	${price}
+	:FOR	${var}	IN	${price}
+	\	Page Should Contain	${price}
+Promo Price
+	[Arguments]	${promo-price}
+	:FOR	${var}	IN	${promo-price}
+	\	Page Should Contain	${promo-price}
+
+
+	
+	
+Go to Internet Security	
+	Open browser	${HOMEPAGE}		${BROWSER}
+
