@@ -51,58 +51,55 @@ ${locator_promo-price_3}	//span[@class="fmp-price fmp-promo-price" and contains(
 
 Verify Multiprice for SKU Test1D12M
 	Page Should Contain Element	${locator_sku-Test1D12M}${locator_devices_1}
-	Number of Devices		${devices_1}
+	Verify Number of Devices	${devices_1}
 	Page Should Contain Element	${locator_sku-Test1D12M}${locator_months_1}
-	Number of Months		${months_1}
+	Verify Number of Months		${months_1}
 	Page Should Contain Element	${locator_sku-Test1D12M}${locator_price_1}
-	Normal Price			${price_1}
+	Verify Normal Price		${price_1}
 	Page Should Contain Element	${locator_sku-Test1D12M}${locator_promo-price_1}
-	Promo Price			${promo-price_1}
+	Verify Promo Price		${promo-price_1}
 	
 
 Verify Multiprice for SKU Test3D24M
 	Page Should Contain Element	${locator_sku-Test3D24M}${locator_devices_2}
-	Number of Devices		${devices_2}
+	Verify Number of Devices	${devices_2}
 	Page Should Contain Element	${locator_sku-Test3D24M}${locator_months_2}
-	Number of Months		${months_2}
+	Verify Number of Months		${months_2}
 	Page Should Contain Element	${locator_sku-Test3D24M}${locator_price_2}
-	Normal Price			${price_2}
+	Verify Normal Price		${price_2}
 	Page Should Contain Element	${locator_sku-Test3D24M}${locator_promo-price_2}
-	Promo Price			${promo-price_2}
+	Verify Promo Price		${promo-price_2}
 
 Verify Multiprice for SKU Test3D36M
 	Page Should Contain Element	${locator_sku-Test3D36M}${locator_devices_3}
-	Number of Devices		${devices_3}
+	Verify Number of Devices	${devices_3}
 	Page Should Contain Element	${locator_sku-Test3D36M}${locator_months_3}
-	Number of Months		${months_3}
+	Verify Number of Months		${months_3}
 	Page Should Contain Element	${locator_sku-Test3D36M}${locator_promo-price_3}
-	Promo Price			${promo-price_3}
+	Verify Promo Price		${promo-price_3}
 	
 
 *** Keywords ***
 
-Number of Devices
+Verify Number of Devices
 	[Arguments]	${devices}
 	:FOR    ${var}    IN	${devices}
 	\	Page Should Contain	${devices}
 	
-Number of Months	
+Verify Number of Months	
 	[Arguments]	${months}
 	:FOR    ${var}	IN	${months}
 	\	Page Should Contain	${months}
 
 
-Normal Price		
+Verify Normal Price		
 	[Arguments]	${price}
 	:FOR	${var}	IN	${price}
 	\	Page Should Contain	${price}
-Promo Price
+Verify Promo Price
 	[Arguments]	${promo-price}
 	:FOR	${var}	IN	${promo-price}
 	\	Page Should Contain	${promo-price}
-
-
-	
 	
 Go to Internet Security	
 	Open browser	${HOMEPAGE}		${BROWSER}
