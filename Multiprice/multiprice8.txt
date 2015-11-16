@@ -32,7 +32,6 @@ ${locator_months_1}		//span[@class="fmp-months" and contains(text(),'12 months')
 ${locator_price_1}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'€30')]
 ${locator_promo-price_1}	//span[@class="fmp-price fmp-promo-price" and contains(text(),'€20')]
 
-
 # Locator for SKU Test3D24M
 ${locator_sku-Test3D24M}	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]
 ${locator_devices_2}		//span[@class="fmp-devices" and contains(text(),'3 devices')]
@@ -49,7 +48,7 @@ ${locator_promo-price_3}	//span[@class="fmp-price fmp-promo-price" and contains(
 
 *** Test Cases ***
 
-Verify Multiprice for SKU Test1D12M
+Test Multiprice for SKU Test1D12M
 	Page Should Contain Element	${locator_sku-Test1D12M}${locator_devices_1}
 	Verify Number of Devices	${devices_1}
 	Page Should Contain Element	${locator_sku-Test1D12M}${locator_months_1}
@@ -60,7 +59,7 @@ Verify Multiprice for SKU Test1D12M
 	Verify Promo Price		${promo-price_1}
 	
 
-Verify Multiprice for SKU Test3D24M
+Test Multiprice for SKU Test3D24M
 	Page Should Contain Element	${locator_sku-Test3D24M}${locator_devices_2}
 	Verify Number of Devices	${devices_2}
 	Page Should Contain Element	${locator_sku-Test3D24M}${locator_months_2}
@@ -70,7 +69,7 @@ Verify Multiprice for SKU Test3D24M
 	Page Should Contain Element	${locator_sku-Test3D24M}${locator_promo-price_2}
 	Verify Promo Price		${promo-price_2}
 
-Verify Multiprice for SKU Test3D36M
+Test Multiprice for SKU Test3D36M
 	Page Should Contain Element	${locator_sku-Test3D36M}${locator_devices_3}
 	Verify Number of Devices	${devices_3}
 	Page Should Contain Element	${locator_sku-Test3D36M}${locator_months_3}
@@ -103,4 +102,4 @@ Verify Promo Price
 	
 Go to Internet Security	
 	Open browser	${HOMEPAGE}		${BROWSER}
-
+	Page Should Contain		The best protection in the world for surfing, banking and shopping online
