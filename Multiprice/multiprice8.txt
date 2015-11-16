@@ -27,23 +27,23 @@ ${promo-price_3}	€99
 
 # Locator for SKU Test1D12M
 ${locator_sku-Test1D12M}	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]
-${locator_devices_1}		//span[@class="fmp-devices" and contains(text(),'1 device')]
-${locator_months_1}		//span[@class="fmp-months" and contains(text(),'12 months')]
-${locator_price_1}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'€30')]
-${locator_promo-price_1}	//span[@class="fmp-price fmp-promo-price" and contains(text(),'€20')]
+${locator_devices_1}		//span[@class="fmp-devices" and contains(text(),'${devices_1}')]
+${locator_months_1}		//span[@class="fmp-months" and contains(text(),'${months_1}')]
+${locator_price_1}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'${price_1}')]
+${locator_promo-price_1}	//span[@class="fmp-price fmp-promo-price" and contains(text(),'${promo-price_1}')]
 
 # Locator for SKU Test3D24M
 ${locator_sku-Test3D24M}	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]
-${locator_devices_2}		//span[@class="fmp-devices" and contains(text(),'3 devices')]
-${locator_months_2}		//span[@class="fmp-months" and contains(text(),'24 months')]
-${locator_price_2}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'€70')]
-${locator_promo-price_2}	//span[@class="fmp-price fmp-promo-price" and contains(text(),'€60')]
+${locator_devices_2}		//span[@class="fmp-devices" and contains(text(),'${devices_2}')]
+${locator_months_2}		//span[@class="fmp-months" and contains(text(),'${months_2}')]
+${locator_price_2}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'${price_2}')]
+${locator_promo-price_2}	//span[@class="fmp-price fmp-promo-price" and contains(text(),'${promo-price_2}')]
 
 # Locator for SKU Test3D36M
 ${locator_sku-Test3D36M}	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]
-${locator_devices_3}		//span[@class="fmp-devices" and contains(text(),'3 devices')]
-${locator_months_3}		//span[@class="fmp-months" and contains(text(),'36 months')]
-${locator_promo-price_3}	//span[@class="fmp-price fmp-promo-price" and contains(text(),'€99')]
+${locator_devices_3}		//span[@class="fmp-devices" and contains(text(),'${devices_3}')]
+${locator_months_3}		//span[@class="fmp-months" and contains(text(),'${months_3}')]
+${locator_promo-price_3}	//span[@class="fmp-price fmp-promo-price" and contains(text(),'${promo-price_3}')]
 
 
 *** Test Cases ***
@@ -95,6 +95,7 @@ Verify Normal Price
 	[Arguments]	${price}
 	:FOR	${var}	IN	${price}
 	\	Page Should Contain	${price}
+
 Verify Promo Price
 	[Arguments]	${promo-price}
 	:FOR	${var}	IN	${promo-price}
