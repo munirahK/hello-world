@@ -1,0 +1,93 @@
+*** Setting ***
+Library		Selenium2Library
+Suite Setup	Go to Internet Security
+
+*** Variables ***
+${HOMEPAGE}		https://${DOMAIN}/${LOCALES}/web/home_global/internet-security
+${BROWSER}		firefox
+${LOCALES}		en
+${DOMAIN}		www2.f-secure.gtn
+
+# No of devices
+${devices_1}		1 device
+${devices_2}		3 devices
+${devices_3}		3 devices
+
+# No of months
+${months_1}		12 months
+${months_2}		24 months
+${months_3}		36 months
+
+# Price
+${price_1}		€30 
+${price_2}		€70
+
+# 
+${promo-price_1}	€20
+${promo-price_2}	€60
+${promo-price_3}	€99
+
+
+
+
+*** Test Cases ***
+Test Devices
+
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="fmp-devices" and contains(text(),'${devices_1}')]
+	Verify no of devices		${devices_1}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="fmp-devices" and contains(text(),'${devices_2}')]
+	Verify no of devices		${devices_2}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]//span[@class="fmp-devices" and contains(text(),'${devices_3}')]
+	Verify no of devices		${devices_3}
+
+Test Months
+	@{months}	Create List	${months_1}	${months_2}	${months_3}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="fmp-months" and contains(text(),'${months_1}')]
+	Verify Number of Months		${months_1}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="fmp-months" and contains(text(),'${months_2}')]
+	Verify Number of Months		${months_2}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]//span[@class="fmp-months" and contains(text(),'${months_3}')]
+	Verify Number of Months		${months_3}
+
+Test Price
+	@{price}	Create List	${price_1}	${price_2}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'${price_1}')]
+	Verify Normal Price		${price_1}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price" and contains(text(),'${price_2}')]
+	Verify Normal Price		${price_2}
+
+Test Promo Price
+	@{promo-price}		Create List	${promo-price_1} ${promo-price_2} ${promo-price_3}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="fmp-price fmp-promo-price" and contains(text(),'${promo-price_1}')]
+	Verify Promo Price	${promo-price_1}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="fmp-price fmp-promo-price" and contains(text(),'${promo-price_2}')]
+	Verify Promo Price	${promo-price_2}
+	Page Should Contain Element	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]//span[@class="fmp-price fmp-promo-price" and contains(text(),'${promo-price_3}')]
+	Verify Promo Price	${promo-price_3}
+	
+	
+
+
+
+*** Keywords ***
+Verify no of devices
+	[Arguments]	${devices}
+	@{items1}	Create List	${devices_1}	${devices_2}	${devices_3}
+	:FOR	${devices}	in	@{items1}
+	\	Log	${devices}
+
+
+Verify Number of Months	
+	[Arguments]	${months}
+	Page Should Contain	${months}
+
+Verify Normal Price
+	[Arguments]	${price}
+	Page Should Contain	${price}
+
+Verify Promo Price
+	[Arguments]	${promo-price}
+	Page Should Contain	${promo-price}
+
+Go to Internet Security	
+	Open browser	${HOMEPAGE}		${BROWSER}
