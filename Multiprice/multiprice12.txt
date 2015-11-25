@@ -1,0 +1,115 @@
+*** Setting ***
+Library		Selenium2Library
+Suite Setup	Go to Internet Security
+
+*** Variables ***
+${HOMEPAGE}		https://${DOMAIN}/${LOCALES}/web/home_${SITE}/internet-security
+${BROWSER}		firefox
+${LOCALES}		en, ru_RU
+${DOMAIN}		www2.f-secure.gtn
+${SITE}			global, ru
+${CURRENCY}		€, £, $, py6, MYR
+${POSITION}		0, 1
+
+
+# Multiprice for SKU Test1D12M
+${devices_1}		1
+${months_1}		12
+${price_1}		30
+${promo-price_1}	30
+
+# Multiprice for SKU Test3D24M
+${devices_2}		3
+${months_2}		24
+${price_2}		70
+${promo-price_2}	60
+
+# Multiprice for SKU Test3D36M
+${devices_3}		3
+${months_3}		36
+${promo-price_3}	99
+
+# Multiprice for SKU Test1D48M
+${devices_4}		1
+${months_4}		48
+${price_4}		400
+${promo-price_4}	300
+
+# Locator for SKU
+
+${locator_Test1D12M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]
+${locator_Test3D2M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]
+${locator_Test3D36M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]
+${locator_Test1D48M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D48M"]
+
+# Locator for devices, months, price, and promo price
+
+${locator_devices}		//span[@class="fmp-devices"]
+${locator_months}		//span[@class="fmp-months"]
+${locator_price}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
+${locator_promo-price}		//span[@class="fmp-price fmp-promo-price"]
+
+
+
+*** Test Cases ***
+
+Test Multiprice for SKU Test1D12M
+	Locate Devices		${locator_Test1D12M}${locator_devices}	${devices_1}	
+	Locate Months		${locator_Test1D12M}${locator_months}	${months_1}
+	Locate Price		${locator_Test1D12M}${locator_price}	${price_1}	${POSITION}
+	Locate Promo Price	${locator_Test1D12M}${locator_promo-price}	${promo-price_1}	${POSITION}	
+
+Test Multiprice for SKU Test3D24M
+	Locate Devices		${locator_Test3D2M}${locator_devices}	${devices_2}
+	Locate Months		${locator_Test3D2M}${locator_months}	${months_2}
+	Locate Price		${locator_Test3D2M}${locator_price}	${price_2}	${POSITION}
+	Locate Promo Price	${locator_Test3D2M}${locator_promo-price}	${promo-price_2}	${POSITION}
+	
+Test Multiprice for SKU Test3D36M
+	Locate Devices		${locator_Test3D36M}${locator_devices}	${devices_3}
+	Locate Months		${locator_Test3D36M}${locator_months}		${months_3}
+	Locate Promo Price	${locator_Test3D36M}${locator_promo-price}	${promo-price_3}	${POSITION}
+
+Test Multiprice for SKU Test1D48M
+	Locate Devices		${locator_Test1D48M}${locator_devices}	${devices_4}
+	Locate Months		${locator_Test1D48M}${locator_months}	${months_4}
+	Locate Price		${locator_Test1D48M}${locator_price}	${price_4}	${POSITION}
+	Locate Promo Price	${locator_Test1D48M}${locator_promo-price}	${promo-price_4}	${POSITION}
+
+
+
+
+*** Keywords ***
+Locate Devices
+	[Arguments]	${locator_devices}	${devices}
+	${locate_devices}	Get Text	${locator_devices}
+	Page Should Contain	${devices}
+	
+Locate Months
+	[Arguments]	${locator_months}	${months}
+	${locate_months}	Get Text	${locator_months}
+	Page Should Contain	${months}
+
+Locate Price
+	[Arguments]	${locator_price}	${price}	${position}
+	${locate_price}		Get Text	${locator_price}
+	${0} = 	Set Variable	Currency sign is left
+	${1} =	Set Variable	Currency sign is right
+	Run Keyword If	${position}==0	Page Should Contain	${CURRENCY}${price}
+	...	ELSE IF	${position}==1	Page Should Contain	${price} ${CURRENCY}
+
+Locate Promo Price
+	[Arguments]	${locator_promo-price}	${promo-price}	${position}
+	${locate_promo-price}	Get Text	${locator_promo-price}
+	${0} = 	Set Variable	Currency sign is left
+	${1} =	Set Variable	Currency sign is right
+	Run Keyword If	${position}==0	Page Should Contain	${CURRENCY}${promo-price}
+	...	ELSE IF	${position}==1	Page Should Contain	${promo-price} ${CURRENCY}
+
+Go to Internet Security	
+	Open browser	${HOMEPAGE}		${BROWSER}
+
+
+
+	
+
