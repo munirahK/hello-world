@@ -5,9 +5,9 @@ Suite Setup	Go to Internet Security
 *** Variables ***
 ${HOMEPAGE}		https://${DOMAIN}/${LOCALES}/web/home_${SITE}/internet-security
 ${BROWSER}		firefox
-${LOCALES}		en, ru_RU
+${LOCALES}		en, ru_RU, fr_FR
 ${DOMAIN}		www2.f-secure.gtn
-${SITE}			global, ru
+${SITE}			global, ru, fr
 ${CURRENCY}		€, £, $, py6, MYR
 ${POSITION}		0, 1
 
@@ -27,25 +27,27 @@ ${locator_price}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"
 ${locator_promo-price}		//span[@class="fmp-price fmp-promo-price"]
 
 
-
 *** Test Cases ***
 
 Test Multiprice for SKU Test1D12M
 	Locate Devices		${locator_Test1D12M}${locator_devices}		
 	Locate Months		${locator_Test1D12M}${locator_months}	
-	Locate Price		${locator_Test1D12M}${locator_price}	${POSITION}
-	Locate Promo Price	${locator_Test1D12M}${locator_promo-price}	${POSITION}	
-
+	Locate Price		${locator_Test1D12M}${locator_price}
+	Locate Promo Price	${locator_Test1D12M}${locator_promo-price}
+	
 Test Multiprice for SKU Test3D24M
 	Locate Devices		${locator_Test3D2M}${locator_devices}
 	Locate Months		${locator_Test3D2M}${locator_months}
-	Locate Price		${locator_Test3D2M}${locator_price}	${POSITION}
-	Locate Promo Price	${locator_Test3D2M}${locator_promo-price}	${POSITION}
+	Locate Price		${locator_Test3D2M}${locator_price}
+	Locate Promo Price	${locator_Test3D2M}${locator_promo-price}
 	
+
+
 Test Multiprice for SKU Test3D36M
 	Locate Devices		${locator_Test3D36M}${locator_devices}	
 	Locate Months		${locator_Test3D36M}${locator_months}		
-	Locate Promo Price	${locator_Test3D36M}${locator_promo-price}	${POSITION}
+	Locate Promo Price	${locator_Test3D36M}${locator_promo-price}
+
 
 
 *** Keywords ***
@@ -55,16 +57,18 @@ Locate Devices
 	
 	
 Locate Months
-	[Arguments]	${locator_months}	${months}
+	[Arguments]	${locator_months}
 	${locate_months}	Get Text	${locator_months}
 	
 Locate Price
-	[Arguments]	${locator_price}	${price}	${position}
+	[Arguments]	${locator_price}
 	${locate_price}		Get Text	${locator_price}
 
 Locate Promo Price
-	[Arguments]	${locator_promo-price}	${promo-price}	${position}
+	[Arguments]	${locator_promo-price}
 	${locate_promo-price}	Get Text	${locator_promo-price}
+
+
 
 Go to Internet Security	
 	Open browser	${HOMEPAGE}		${BROWSER}
