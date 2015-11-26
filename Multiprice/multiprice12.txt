@@ -32,8 +32,8 @@ ${promo-price_3}	99
 # Multiprice for SKU Test1D48M
 ${devices_4}		1
 ${months_4}		48
-${price_4}		400
-${promo-price_4}	300
+${price_4}		200
+${promo-price_4}	190
 
 # Locator for SKU
 
