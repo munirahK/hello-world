@@ -1,0 +1,75 @@
+*** Setting ***
+Library		Selenium2Library
+Suite Setup	Go to Internet Security
+
+*** Variables ***
+${HOMEPAGE}		https://${DOMAIN}/${LOCALES}/web/home_${SITE}/internet-security
+${BROWSER}		firefox
+${LOCALES}		en, ru_RU
+${DOMAIN}		www2.f-secure.gtn
+${SITE}			global, ru
+${CURRENCY}		€, £, $, py6, MYR
+${POSITION}		0, 1
+
+
+# Locator for SKU
+
+${locator_Test1D12M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]
+${locator_Test3D2M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]
+${locator_Test3D36M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]
+${locator_Test1D48M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D48M"]
+
+# Locator for devices, months, price, and promo price
+
+${locator_devices}		//span[@class="fmp-devices"]
+${locator_months}		//span[@class="fmp-months"]
+${locator_price}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
+${locator_promo-price}		//span[@class="fmp-price fmp-promo-price"]
+
+
+
+*** Test Cases ***
+
+Test Multiprice for SKU Test1D12M
+	Locate Devices		${locator_Test1D12M}${locator_devices}		
+	Locate Months		${locator_Test1D12M}${locator_months}	
+	Locate Price		${locator_Test1D12M}${locator_price}	${POSITION}
+	Locate Promo Price	${locator_Test1D12M}${locator_promo-price}	${POSITION}	
+
+Test Multiprice for SKU Test3D24M
+	Locate Devices		${locator_Test3D2M}${locator_devices}
+	Locate Months		${locator_Test3D2M}${locator_months}
+	Locate Price		${locator_Test3D2M}${locator_price}	${POSITION}
+	Locate Promo Price	${locator_Test3D2M}${locator_promo-price}	${POSITION}
+	
+Test Multiprice for SKU Test3D36M
+	Locate Devices		${locator_Test3D36M}${locator_devices}	
+	Locate Months		${locator_Test3D36M}${locator_months}		
+	Locate Promo Price	${locator_Test3D36M}${locator_promo-price}	${POSITION}
+
+
+*** Keywords ***
+Locate Devices
+	[Arguments]	${locator_devices}
+	${locate_devices}	Get Text	${locator_devices}
+	
+	
+Locate Months
+	[Arguments]	${locator_months}	${months}
+	${locate_months}	Get Text	${locator_months}
+	
+Locate Price
+	[Arguments]	${locator_price}	${price}	${position}
+	${locate_price}		Get Text	${locator_price}
+
+Locate Promo Price
+	[Arguments]	${locator_promo-price}	${promo-price}	${position}
+	${locate_promo-price}	Get Text	${locator_promo-price}
+
+Go to Internet Security	
+	Open browser	${HOMEPAGE}		${BROWSER}
+
+
+
+	
+
