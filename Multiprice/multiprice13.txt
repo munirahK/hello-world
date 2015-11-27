@@ -16,7 +16,7 @@ ${POSITION}		0, 1
 ${devices_1}		1
 ${months_1}		12
 ${price_1}		30
-${promo-price_1}	30
+${promo-price_1}	20
 
 # Multiprice for SKU Test3D24M
 ${devices_2}		3
@@ -92,28 +92,25 @@ Test Multiprice for SKU Test1D48M
 Locate Devices
 	[Arguments]	${locator_devices}	${devices}
 	${locate_devices}	Get Text	${locator_devices}
-	Page Should Contain	${devices}
+	Page Should Contain		${locate_devices}	${devices}
 	
 Locate Months
 	[Arguments]	${locator_months}	${months}
 	${locate_months}	Get Text	${locator_months}
-	Page Should Contain	${months}
+	Run Keyword If	${position}==0	Should Be Equal		${locate_months}	${months} months
+	...	ELSE IF	${position}==1	Should Be Equal		${locate_months}	Месяцев: ${months}
 
 Locate Price
 	[Arguments]	${locator_price}	${price}	${position}
 	${locate_price}		Get Text	${locator_price}
-	${0} = 	Set Variable	Currency sign is left
-	${1} =	Set Variable	Currency sign is right
-	Run Keyword If	${position}==0	Page Should Contain	${CURRENCY}${price}
-	...	ELSE IF	${position}==1	Page Should Contain	${price} ${CURRENCY}
+	Run Keyword If	${position}==0	Should Be Equal		${locate_price}		${CURRENCY}${price}
+	...	ELSE IF	${position}==1	Should Be Equal		${locate_price}		${price} ${CURRENCY}
 
 Locate Promo Price
 	[Arguments]	${locator_promo-price}	${promo-price}	${position}
 	${locate_promo-price}	Get Text	${locator_promo-price}
-	${0} = 	Set Variable	Currency sign is left
-	${1} =	Set Variable	Currency sign is right
-	Run Keyword If	${position}==0	Page Should Contain	${CURRENCY}${promo-price}
-	...	ELSE IF	${position}==1	Page Should Contain	${promo-price} ${CURRENCY}
+	Run Keyword If	${position}==0	Should Be Equal		${locate_promo-price}	${CURRENCY}${promo-price}
+	...	ELSE IF	${position}==1	Should Be Equal		${locate_promo-price}	${promo-price} ${CURRENCY}
 
 Go to Internet Security	
 	Open browser	${HOMEPAGE}		${BROWSER}
