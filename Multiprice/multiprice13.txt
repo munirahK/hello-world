@@ -32,32 +32,32 @@ ${promo-price_3}	99
 # Multiprice for SKU Test1D48M
 ${devices_4}		1
 ${months_4}		48
-${price_4}		400
-${promo-price_4}	300
+${price_4}		200
+${promo-price_4}	190
 
 # Locator for SKU Test1D12M
 	
-${locator_devices_1}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="fmp-devices"]
-${locator_months_1}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="fmp-months"]
-${locator_price_1}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
-${locator_promo-price_1}	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]//span[@class="fmp-price fmp-promo-price"]
+${locator_devices_1}		//div[@class="table-row"][@data-sku="Test1D12M"][@data-product="IS"]/div/span/span[@class="fmp-devices"]
+${locator_months_1}		//div[@class="table-row"][@data-sku="Test1D12M"][@data-product="IS"]/div/span/span[@class="fmp-months"]
+${locator_price_1}		//div[@class="table-row"][@data-sku="Test1D12M"][@data-product="IS"]/div/span[@class="font-pink fmp-onlypromo"]/s[@class="fmp-price"]
+${locator_promo-price_1}	//div[@class="table-row"][@data-sku="Test1D12M"][@data-product="IS"]/div/span[@class="fmp-price fmp-promo-price"]
 
 # Locator for SKU Test3D24M
-${locator_devices_2}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="fmp-devices"]
-${locator_months_2}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="fmp-months"]
-${locator_price_2}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
-${locator_promo-price_2}	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]//span[@class="fmp-price fmp-promo-price"]
+${locator_devices_2}		//div[@class="table-row"][@data-sku="Test3D24M"][@data-product="IS"]/div/span/span[@class="fmp-devices"]
+${locator_months_2}		//div[@class="table-row"][@data-sku="Test3D24M"][@data-product="IS"]/div/span/span[@class="fmp-months"]
+${locator_price_2}		//div[@class="table-row"][@data-sku="Test3D24M"][@data-product="IS"]/div/span[@class="font-pink fmp-onlypromo"]/s[@class="fmp-price"]
+${locator_promo-price_2}	//div[@class="table-row"][@data-sku="Test3D24M"][@data-product="IS"]/div/span[@class="fmp-price fmp-promo-price"]
 
 # Locator for SKU Test3D36M
-${locator_devices_3}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]//span[@class="fmp-devices"]
-${locator_months_3}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]//span[@class="fmp-months"]
-${locator_promo-price_3}	//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]//span[@class="fmp-price fmp-promo-price"]
+${locator_devices_3}		//div[@class="table-row"][@data-sku="Test3D36M"][@data-product="IS"]/div/span/span[@class="fmp-devices"]
+${locator_months_3}		//div[@class="table-row"][@data-sku="Test3D36M"][@data-product="IS"]/div/span/span[@class="fmp-months"]
+${locator_promo-price_3}	//div[@class="table-row"][@data-sku="Test3D36M"][@data-product="IS"]/div/span[@class="fmp-price fmp-promo-price"]
 
 # Locator for SKU Test1D48M
-${locator_devices_4}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D48M"]//span[@class="fmp-devices"]
-${locator_months_4}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D48M"]//span[@class="fmp-months"]
-${locator_price_4}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D48M"]//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
-${locator_promo-price_4}	//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D48M"]//span[@class="fmp-price fmp-promo-price"]
+${locator_devices_4}		//div[@class="table-row"][@data-sku="Test1D48M"][@data-product="IS"]/div/span/span[@class="fmp-devices"]
+${locator_months_4}		//div[@class="table-row"][@data-sku="Test1D48M"][@data-product="IS"]/div/span/span[@class="fmp-months"]
+${locator_price_4}		//div[@class="table-row"][@data-sku="Test1D48M"][@data-product="IS"]/div/span[@class="font-pink fmp-onlypromo"]/s[@class="fmp-price"]
+${locator_promo-price_4}	//div[@class="table-row"][@data-sku="Test1D48M"][@data-product="IS"]/div/span[@class="fmp-price fmp-promo-price"]
 
 
 *** Test Cases ***
