@@ -8,45 +8,46 @@ ${BROWSER}		firefox
 ${LOCALES}		en, ru_RU, fr_FR
 ${DOMAIN}		www2.f-secure.gtn
 ${SITE}			global, ru, fr
-${CURRENCY}		€, £, $, py6, MYR
-${POSITION}		0, 1
+${SKU1}
+${SKU2}
+${SKU3}
 
 
 # Locator for SKU
 
-${locator_Test1D12M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D12M"]
-${locator_Test3D2M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D24M"]
-${locator_Test3D36M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test3D36M"]
-${locator_Test1D48M}		//div[@class="table-row"][@data-product="IS"][@data-sku="Test1D48M"]
+${locator_SKU1}			//div[@class="table-row"][@data-product="IS"][@data-sku="${SKU1}"]
+${locator_SKU2}			//div[@class="table-row"][@data-product="IS"][@data-sku="${SKU2}"]
+${locator_SKU3}			//div[@class="table-row"][@data-product="IS"][@data-sku="${SKU3}"]
+
 
 # Locator for devices, months, price, and promo price
 
-${locator_devices}		//span[@class="fmp-devices"]
-${locator_months}		//span[@class="fmp-months"]
-${locator_price}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
-${locator_promo-price}		//span[@class="fmp-price fmp-promo-price"]
+${locator_devices}		/div/span/span[@class="fmp-devices"]
+${locator_months}		/div/span/span[@class="fmp-months"]
+${locator_price}		/div/span[@class="font-pink fmp-onlypromo"]/s[@class="fmp-price"]
+${locator_promo-price}		/div/span[@class="fmp-price fmp-promo-price"]
 
 
 *** Test Cases ***
 
-Test Multiprice for SKU Test1D12M
-	Locate Devices		${locator_Test1D12M}${locator_devices}		
-	Locate Months		${locator_Test1D12M}${locator_months}	
-	Locate Price		${locator_Test1D12M}${locator_price}
-	Locate Promo Price	${locator_Test1D12M}${locator_promo-price}
+Test Multiprice for SKU 1
+	Locate Devices		${locator_SKU1}${locator_devices}		
+	Locate Months		${locator_SKU1}${locator_months}	
+	Locate Price		${locator_SKU1}${locator_price}
+	Locate Promo Price	${locator_SKU1}${locator_promo-price}
 	
-Test Multiprice for SKU Test3D24M
-	Locate Devices		${locator_Test3D2M}${locator_devices}
-	Locate Months		${locator_Test3D2M}${locator_months}
-	Locate Price		${locator_Test3D2M}${locator_price}
-	Locate Promo Price	${locator_Test3D2M}${locator_promo-price}
+Test Multiprice for SKU 2
+	Locate Devices		${locator_SKU2}${locator_devices}
+	Locate Months		${locator_SKU2}${locator_months}
+	Locate Price		${locator_SKU2}${locator_price}
+	Locate Promo Price	${locator_SKU2}${locator_promo-price}
 	
 
 
-Test Multiprice for SKU Test3D36M
-	Locate Devices		${locator_Test3D36M}${locator_devices}	
-	Locate Months		${locator_Test3D36M}${locator_months}		
-	Locate Promo Price	${locator_Test3D36M}${locator_promo-price}
+Test Multiprice for SKU 3
+	Locate Devices		${locator_SKU3}${locator_devices}	
+	Locate Months		${locator_SKU3}${locator_months}		
+	Locate Promo Price	${locator_SKU3}${locator_promo-price}
 
 
 
