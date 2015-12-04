@@ -62,7 +62,7 @@ ${locator_promo-price_4}	//div[@class="table-row"][@data-sku="Test1D48M"][@data-
 
 *** Test Cases ***
 
-Test Multiple for Global site
+Test Multiprice for Global site
 	
 	Set Variable	${POSITION}==0	
 	#Multiprice for SKU Test1D12M
