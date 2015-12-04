@@ -10,6 +10,7 @@ ${DOMAIN}		www2.f-secure.gtn
 ${SITE}			global, ru
 ${CURRENCY}		€, £, $, py6, MYR
 ${POSITION}		0, 1
+${COUNTRY}		0, 1
 
 
 # Multiprice for SKU Test1D12M
@@ -63,34 +64,61 @@ ${locator_promo-price_4}	//div[@class="table-row"][@data-sku="Test1D48M"][@data-
 *** Test Cases ***
 
 Test Multiprice for SKU Test1D12M
-	Locate Devices		${locator_devices_1}	${devices_1}	
-	Locate Months		${locator_months_1}	${months_1}
+
+	Run Keyword If	${COUNTRY}==0
+	...	Locate Devices		${locator_devices_1}	${devices_1}	${POSITION}	device
+	...	ELSE IF	${COUNTRY}==1
+	...	Locate Devices		${locator_devices_1}	${devices_1}	${POSITION}	устройство
+
+	Run Keyword If	${COUNTRY}==0
+	...	Locate Months		${locator_months_1}	${months_1}	${POSITION}	months
+	...	ELSE IF	${COUNTRY}==1
+	...	Locate Months		${locator_months_1}	${months_1}	${POSITION}	Месяцев:
+
+
 	Locate Price		${locator_price_1}	${price_1}	${POSITION}
-	Locate Promo Price	${locator_promo-price_1}	${promo-price_1}	${POSITION}	
-	@{item1}  	Create List	1 device	12 months	€30	€20
-	@{item2}	Create List	1 устройство	Месяцев: 12	30 €	20 €
-	
+	Locate Promo Price	${locator_promo-price_1}	${promo-price_1}	${POSITION}
 	
 
 Test Multiprice for SKU Test3D24M
-	Locate Devices		${locator_devices_2}	${devices_2}
-	Locate Months		${locator_months_2}	${months_2}
+	Run Keyword If	${COUNTRY}==0
+	...	Locate Devices		${locator_devices_2}	${devices_2}	${POSITION}	devices
+	...	ELSE IF	${COUNTRY}==1
+	...	Locate Devices		${locator_devices_2}	${devices_2}	${POSITION}	Устройств:
+
+	Run Keyword If	${COUNTRY}==0
+	...	Locate Months		${locator_months_2}	${months_2}	${POSITION}	months
+	...	ELSE IF	${COUNTRY}==1
+	...	Locate Months		${locator_months_2}	${months_2}	${POSITION}	Месяцев:
+
 	Locate Price		${locator_price_2}	${price_2}	${POSITION}
 	Locate Promo Price	${locator_promo-price_2}	${promo-price_2}	${POSITION}
-	@{item1}  	Create List	3 devices	24 months	€70	€60
-	@{item2}	Create List	3 устройств	Месяцев: 24	70 €	60 €
-	
 	
 Test Multiprice for SKU Test3D36M
-	Locate Devices		${locator_devices_3}	${devices_3}
-	Locate Months		${locator_months_3}	${months_3}
+	Run Keyword If	${COUNTRY}==0
+	...	Locate Devices		${locator_devices_3}	${devices_3}	${POSITION}	devices
+	...	ELSE IF	${COUNTRY}==1
+	...	Locate Devices		${locator_devices_3}	${devices_3}	${POSITION}	Устройств:
+
+	Run Keyword If	${COUNTRY}==0
+	...	Locate Months		${locator_months_3}	${months_3} 	${POSITION}	months
+	...	ELSE IF	${COUNTRY}==1
+	...	Locate Months		${locator_months_3}	${months_3}	${POSITION}	Месяцев: 
+
 	Locate Promo Price	${locator_promo-price_3}	${promo-price_3}	${POSITION}
-	@{item1}  	Create List	3 devices	36 months	€99
-	@{item2}	Create List	3 устройств	Месяцев: 36	99 €	
+	
 	
 Test Multiprice for SKU Test1D48M
-	Locate Devices		${locator_devices_4}	${devices_4}
-	Locate Months		${locator_months_4}	${months_4}
+	Run Keyword If	${COUNTRY}==0
+	...	Locate Devices		${locator_devices_4}	${devices_4}	${POSITION}	device
+	...	ELSE IF	${COUNTRY}==1
+	...	Locate Devices		${locator_devices_4}	${devices_4}	${POSITION}	Устройств:
+
+	Run Keyword If	${COUNTRY}==0
+	...	Locate Months		${locator_months_4}	${months_4}	${POSITION}	months
+	...	ELSE IF	${COUNTRY}==1
+	...	Locate Months		${locator_months_4}	${months_4}	${POSITION}	Месяцев:
+
 	Locate Price		${locator_price_4}	${price_4}	${POSITION}
 	Locate Promo Price	${locator_promo-price_4}	${promo-price_4}	${POSITION}
 
@@ -99,30 +127,31 @@ Test Multiprice for SKU Test1D48M
 
 
 *** Keywords ***
-Locate Devices
-	[Arguments]	${locator_devices}	${devices}
+Locate Devices	
+	[Arguments]	${locator_devices}	${devices}	${POSITION}	${singular_plural_devices}
 	${locate_devices}	Get Text	${locator_devices}
-	Page Should Contain		${locate_devices}	${devices}	
+	Run Keyword If	${POSITION}==0	Should Be Equal		${locate_devices}	${devices} ${singular_plural_devices}
+	...	ELSE IF	${POSITION}==1	Should Be Equal		${locate_devices}	${singular_plural_devices} ${devices}
 
 
 Locate Months
-	[Arguments]	${locator_months}	${months}
+	[Arguments]	${locator_months}	${months}	${POSITION}	${singular_plural_months}
 	${locate_months}	Get Text	${locator_months}
-	Run Keyword If	${position}==0	Should Be Equal		${locate_months}	${months} months
-	...	ELSE IF	${position}==1	Should Be Equal		${locate_months}	Месяцев: ${months}
+	Run Keyword If	${POSITION}==0	Should Be Equal		${locate_months}	${months} ${singular_plural_months}
+	...	ELSE IF	${POSITION}==1	Should Be Equal		${locate_months}	${singular_plural_months} ${months}
 			
 
 Locate Price
-	[Arguments]	${locator_price}	${price}	${position}
+	[Arguments]	${locator_price}	${price}	${POSITION}	
 	${locate_price}		Get Text	${locator_price}
-	Run Keyword If	${position}==0	Should Be Equal		${locate_price}		${CURRENCY}${price}
-	...	ELSE IF	${position}==1	Should Be Equal		${locate_price}		${price} ${CURRENCY}
+	Run Keyword If	${POSITION}==0	Should Be Equal		${locate_price}		${CURRENCY}${price}
+	...	ELSE IF	${POSITION}==1	Should Be Equal		${locate_price}		${price} ${CURRENCY}
 
 Locate Promo Price
-	[Arguments]	${locator_promo-price}	${promo-price}	${position}
+	[Arguments]	${locator_promo-price}	${promo-price}	${POSITION}
 	${locate_promo-price}	Get Text	${locator_promo-price}
-	Run Keyword If	${position}==0	Should Be Equal		${locate_promo-price}	${CURRENCY}${promo-price}
-	...	ELSE IF	${position}==1	Should Be Equal		${locate_promo-price}	${promo-price} ${CURRENCY}
+	Run Keyword If	${POSITION}==0	Should Be Equal		${locate_promo-price}	${CURRENCY}${promo-price}
+	...	ELSE IF	${POSITION}==1	Should Be Equal		${locate_promo-price}	${promo-price} ${CURRENCY}
 
 
 Go to Internet Security	
