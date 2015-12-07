@@ -66,7 +66,7 @@ Test Multiprice for Global site
 	
 	Set Variable	${POSITION}==0	
 	#Multiprice for SKU Test1D12M
-	Locate Devices		${locator_devices_1}	${devices_1}	${POSITION}	device
+	Locate Device		${locator_devices_1}	${devices_1}	${POSITION}	device
 	Locate Months		${locator_months_1}	${months_1}	${POSITION}	months
 	Locate Price		${locator_price_1}	${price_1}	${POSITION}
 	Locate Promo Price	${locator_promo-price_1}	${promo-price_1}	${POSITION}
@@ -92,7 +92,7 @@ Test Multiprice for Global site
 Test Multiprice for Russian site
 	Set Variable	${POSITION}==1
 	#Multiprice for SKU Test1D12M
-	Locate Devices		${locator_devices_1}	${devices_1}	${POSITION}	устройство
+	Locate Device		${locator_devices_1}	${devices_1}	${POSITION}	устройство
 	Locate Months		${locator_months_1}	${months_1}	${POSITION}	Месяцев:
 	Locate Price		${locator_price_1}	${price_1}	${POSITION}
 	Locate Promo Price	${locator_promo-price_1}	${promo-price_1}	${POSITION}
@@ -115,6 +115,13 @@ Test Multiprice for Russian site
 
 
 *** Keywords ***
+
+Locate Device	
+	[Arguments]	${locator_devices}	${devices}	${POSITION}	${singular_plural_devices}
+	${locate_devices}	Get Text	${locator_devices}
+	Run Keyword If	${POSITION}==0	Should Be Equal		${locate_devices}	${devices} ${singular_plural_devices}
+	...	ELSE IF	${POSITION}==1	Should Be Equal		${locate_devices}	${devices} ${singular_plural_devices}
+
 Locate Devices	
 	[Arguments]	${locator_devices}	${devices}	${POSITION}	${singular_plural_devices}
 	${locate_devices}	Get Text	${locator_devices}
