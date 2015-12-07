@@ -14,7 +14,7 @@ ${DOMAIN}		www2.f-secure.gtn
 *** Test Cases ***
 
 Element 1
-	Element Should Contain		88	12	30	20
+	Element Should Contain		1	12	30	20
 
 Element 2
 	Element Should Contain		3	24	70	60

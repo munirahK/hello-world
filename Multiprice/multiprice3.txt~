@@ -20,7 +20,7 @@ Element 2
 	Element Should Contain		3	24	70	60
 					
 Element 3
-	Element Without Promo		3	36	rm99
+	Element Without Promo		3	36	99
 	
 	
 			
@@ -32,7 +32,7 @@ Element Should Contain
 	[Arguments]	${devices}	${months}	${price}	${promo-price}	
 	
 	Wait Until Page Contains	${devices}
-	Page Should Contain Element	//span[@class="fmp-devices"]	
+	Page Should Contain Element	//span[@class="fmp-devices"]//input[@value="1 device"]
 	
 
 	Wait Until Page Contains	${months}

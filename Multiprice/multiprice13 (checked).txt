@@ -1,0 +1,127 @@
+*** Setting ***
+Library		Selenium2Library
+Suite Setup	Go to Internet Security
+
+*** Variables ***
+${HOMEPAGE}		https://${DOMAIN}/${LOCALES}/web/home_${SITE}/internet-security
+${BROWSER}		firefox
+${LOCALES}		en, ru_RU
+${DOMAIN}		www2.f-secure.gtn
+${SITE}			global, ru
+${CURRENCY}		€, £, $, py6, MYR
+${POSITION}		0, 1
+
+
+# Multiprice for SKU Test1D12M
+${devices_1}		1
+${months_1}		12
+${price_1}		30
+${promo-price_1}	20
+
+# Multiprice for SKU Test3D24M
+${devices_2}		3
+${months_2}		24
+${price_2}		70
+${promo-price_2}	60
+
+# Multiprice for SKU Test3D36M
+${devices_3}		3
+${months_3}		36
+${promo-price_3}	99
+
+# Multiprice for SKU Test1D48M
+${devices_4}		1
+${months_4}		48
+${price_4}		200
+${promo-price_4}	190
+
+# Locator for SKU Test1D12M
+	
+${locator_devices_1}		//div[@class="table-row"][@data-sku="Test1D12M"][@data-product="IS"]/div/span/span[@class="fmp-devices"]
+${locator_months_1}		//div[@class="table-row"][@data-sku="Test1D12M"][@data-product="IS"]/div/span/span[@class="fmp-months"]
+${locator_price_1}		//div[@class="table-row"][@data-sku="Test1D12M"][@data-product="IS"]/div/span[@class="font-pink fmp-onlypromo"]/s[@class="fmp-price"]
+${locator_promo-price_1}	//div[@class="table-row"][@data-sku="Test1D12M"][@data-product="IS"]/div/span[@class="fmp-price fmp-promo-price"]
+
+# Locator for SKU Test3D24M
+${locator_devices_2}		//div[@class="table-row"][@data-sku="Test3D24M"][@data-product="IS"]/div/span/span[@class="fmp-devices"]
+${locator_months_2}		//div[@class="table-row"][@data-sku="Test3D24M"][@data-product="IS"]/div/span/span[@class="fmp-months"]
+${locator_price_2}		//div[@class="table-row"][@data-sku="Test3D24M"][@data-product="IS"]/div/span[@class="font-pink fmp-onlypromo"]/s[@class="fmp-price"]
+${locator_promo-price_2}	//div[@class="table-row"][@data-sku="Test3D24M"][@data-product="IS"]/div/span[@class="fmp-price fmp-promo-price"]
+
+# Locator for SKU Test3D36M
+${locator_devices_3}		//div[@class="table-row"][@data-sku="Test3D36M"][@data-product="IS"]/div/span/span[@class="fmp-devices"]
+${locator_months_3}		//div[@class="table-row"][@data-sku="Test3D36M"][@data-product="IS"]/div/span/span[@class="fmp-months"]
+${locator_promo-price_3}	//div[@class="table-row"][@data-sku="Test3D36M"][@data-product="IS"]/div/span[@class="fmp-price fmp-promo-price"]
+
+# Locator for SKU Test1D48M
+${locator_devices_4}		//div[@class="table-row"][@data-sku="Test1D48M"][@data-product="IS"]/div/span/span[@class="fmp-devices"]
+${locator_months_4}		//div[@class="table-row"][@data-sku="Test1D48M"][@data-product="IS"]/div/span/span[@class="fmp-months"]
+${locator_price_4}		//div[@class="table-row"][@data-sku="Test1D48M"][@data-product="IS"]/div/span[@class="font-pink fmp-onlypromo"]/s[@class="fmp-price"]
+${locator_promo-price_4}	//div[@class="table-row"][@data-sku="Test1D48M"][@data-product="IS"]/div/span[@class="fmp-price fmp-promo-price"]
+
+
+*** Test Cases ***
+
+Test Multiprice for SKU Test1D12M
+	Locate Devices		${locator_devices_1}	${devices_1}	
+	Locate Months		${locator_months_1}	${months_1}
+	Locate Price		${locator_price_1}	${price_1}	${POSITION}
+	Locate Promo Price	${locator_promo-price_1}	${promo-price_1}	${POSITION}	
+	
+	
+
+Test Multiprice for SKU Test3D24M
+	Locate Devices		${locator_devices_2}	${devices_2}
+	Locate Months		${locator_months_2}	${months_2}
+	Locate Price		${locator_price_2}	${price_2}	${POSITION}
+	Locate Promo Price	${locator_promo-price_2}	${promo-price_2}	${POSITION}
+	
+	
+Test Multiprice for SKU Test3D36M
+	Locate Devices		${locator_devices_3}	${devices_3}
+	Locate Months		${locator_months_3}	${months_3}
+	Locate Promo Price	${locator_promo-price_3}	${promo-price_3}	${POSITION}
+	
+	
+Test Multiprice for SKU Test1D48M
+	Locate Devices		${locator_devices_4}	${devices_4}
+	Locate Months		${locator_months_4}	${months_4}
+	Locate Price		${locator_price_4}	${price_4}	${POSITION}
+	Locate Promo Price	${locator_promo-price_4}	${promo-price_4}	${POSITION}
+
+
+
+
+
+*** Keywords ***
+Locate Devices
+	[Arguments]	${locator_devices}	${devices}
+	${locate_devices}	Get Text	${locator_devices}
+XX	Page Should Contain		${locate_devices}	${devices}	
+
+
+Locate Months
+	[Arguments]	${locator_months}	${months}
+	${locate_months}	Get Text	${locator_months}
+	Run Keyword If	${position}==0	Should Be Equal		${locate_months}	${months} months
+XX	...	ELSE IF	${position}==1	Should Be Equal		${locate_months}	Месяцев: ${months}
+			
+
+Locate Price
+	[Arguments]	${locator_price}	${price}	${position}
+	${locate_price}		Get Text	${locator_price}
+	Run Keyword If	${position}==0	Should Be Equal		${locate_price}		${CURRENCY}${price}
+	...	ELSE IF	${position}==1	Should Be Equal		${locate_price}		${price} ${CURRENCY}
+
+Locate Promo Price
+	[Arguments]	${locator_promo-price}	${promo-price}	${position}
+	${locate_promo-price}	Get Text	${locator_promo-price}
+	Run Keyword If	${position}==0	Should Be Equal		${locate_promo-price}	${CURRENCY}${promo-price}
+	...	ELSE IF	${position}==1	Should Be Equal		${locate_promo-price}	${promo-price} ${CURRENCY}
+
+
+
+Go to Internet Security	
+	Open browser	${HOMEPAGE}		${BROWSER}
+
+

@@ -29,7 +29,7 @@ Element 3
 //div[@data-sku="Test1D12M"]
 	[Arguments]	${devices}	${months}	${price}	${promo-price}	
 	
-	Wait Until Page Contains	${devices}	
+	Wait Until Page Contains	${devices}=	Get Text ${locator_devices}	
 	Page Should Contain Element	//span[@class="fmp-devices" and contains(text(),'2 device')]	
 	
 	Wait Until Page Contains	${months}

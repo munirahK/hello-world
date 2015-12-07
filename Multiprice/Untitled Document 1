@@ -31,3 +31,118 @@ https://www2.f-secure.gtn/${LOCALES}/web/home_global/internet-security
 
 
 //div[@data-sku="Test1D12M"]
+
+${score_m} = Get Text ${locator_score_mobile}
+
+//div[@class="tab-title" and contains(text(),'Mobile')]
+
+
+//div[@class="table-row" @data-product="IS" @data-sku="Test1D12M"]/div[@class="table-cell"]/span[@class="hide" @text="Rubbish to trigger SKU to work"]<span> <span class="fmp-devices">1 device</span><span class="fmp-months">12 months</span></span> <span class="font-pink fmp-onlypromo"> <s class="fmp-price">€30</s> </span> <span class="fmp-price fmp-promo-price">€20</span> </div> <div class="table-cell"> <a target="_blank" class="font-purple fmp-shopping-url" href="https://www.test.com?language=en&amp;currency=EUR">Buy now&nbsp;→</a> </div> 
+
+
+	[Arguments]		${devices1}	${months1}	${price1}	${promo-price1}
+	Run Keyword If		'${devices1}'=='${devices_1}'		
+		Page Should Contain	1 device
+		ELSE
+		Log ${devices1}
+
+	Run Keyword If		'${months1}'=='${months_1}'	
+		Page Should Contain	12 months
+		ELSE
+		Log ${months1}
+		
+	Run Keyword If		'${price1}'=='${price_1}'	
+		Page Should Contain	€30
+		ELSE
+		Log ${price1}
+
+	Run Keyword If		'${promo-price1}'=='${promo-price_1}'	
+		Page Should Contain	€20
+		ELSE
+		Log ${promo-price1}
+
+
+Create List
+	[Arguments]	${devices}	${months}	${price}	${promo-price}	
+	Should Be Equal		${devices}	${devices_1}
+	Should Be Equal		${months}	${months_1}
+	Should Be Equal		${price}	${price_1}
+	Should Be Equal		${promo-price}	${promo-price_1}
+
+# Locator
+${loca_devices_1}	//span[contains(text(),'1 device')]
+${loca_months_1}	//span[contains(text(),'12 months')]
+${loca_price_1}		//span//s[contains(text(),'€30')]
+${loca_promo-price_1}	//span[contains(text(),'€20')]
+
+<p align="left">${CURRENCY}</p>
+//p[@align="left"
+	
+
+
+
+	
+	Create Devices		${devices}	
+	
+	@{months} =		Create Months		${months_2}	${months_3}	
+	Create Months		${months}
+	Locate Price		${locator_price_1}
+	@{price} =		Create Price		${price_1}	${price_1}	
+	Create Price		${price}	position
+	
+	@{promo-price} =	Create Promo Price	${promo-price_1}	${promo-price_2}	${promo-price_3}
+	Create Promo Price	${promo-price}	position
+
+
+	${var} = 	Run Keyword If	${position}==0		left
+			ELSE	
+			
+
+
+
+Locate Price
+	[Arguments]	${locator_price}	${price}	${position}
+	${locate_price}		Get Text	${locator_price}
+	Run Keyword If	${position}==0	Page Should Contain	${CURRENCY}${price}
+	...	ELSE IF	${position}==1	Page Should Contain	${price} ${CURRENCY}
+
+Locate Promo Price
+	[Arguments]	${locator_promo-price}	${promo-price}	${position}
+	${locate_promo-price}	Get Text	${locator_promo-price}
+	Run Keyword If	${position}==0	Page Should Contain	${CURRENCY}${promo-price}
+	...	ELSE IF	${position}==1	Page Should Contain	${promo-price} ${CURRENCY}
+
+
+${0} = 	
+
+
+@{item1}  	ABC	${locator_devices_1}	${locator_months_1}	${locator_price_1}	${locator_promo-price_1}
+@{item2}	ABC	${locator_devices_2}	${locator_months_2}	${locator_price_2}	${locator_promo-price_2}
+@{item3} 	ABC	${locator_devices_3}	${locator_months_3}	${locator_promo-price_3}
+ABC
+	@{element} 	Create List	${locate_devices}	${locate_months}	${locate_price}		${locate_promo-price}
+
+
+
+
+#Declaration to obtain price from web page
+${locate_price}     //div[@class="table-row"][@data-sku="Test1D12M"][@data-product="IS"]/div/span[@class="font-pink fmp-onlypromo"]/s[@class="fmp-price"]
+
+
+# Calling subroutine by passing in expected values
+check_price 1  0  Dollar
+check_price 2  1  Dollars
+check_price 100  0  Pounds
+check_price 1    0  Pound
+check_price 2000  1 Bahts
+
+
+
+# Subroutine
+check_price ${price}, ${position}, ${singular_plural_currency}:
+if ${position} == 0
+   Should Match ${locate_price}   ${price}${singular_plural_currency}
+else
+   Should Match ${locate_price}   ${singular_plural_currency}${price}
+
+

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20151111 10:25:25.963" generator="Robot 2.9.1 (Python 2.7.6 on linux2)">
-<suite source="/home/munirah/git/hello-world/Multiprice/multiprice3.txt" id="s1" name="Multiprice3">
+<robot generated="20151207 11:50:21.558" generator="Robot 2.9.1 (Python 2.7.6 on linux2)">
+<suite source="/home/munirah/git/hello-world/Multiprice/multiprice17.txt" id="s1" name="Multiprice17">
 <kw type="setup" name="Go to Internet Security">
 <kw name="Open Browser" library="Selenium2Library">
 <doc>Opens a new browser instance to given URL.</doc>
@@ -8,222 +8,554 @@
 <arg>${HOMEPAGE}</arg>
 <arg>${BROWSER}</arg>
 </arguments>
-<msg timestamp="20151111 10:25:26.427" level="INFO">Opening browser 'firefox' to base url 'https://www2.f-secure.gtn/en/web/home_global/internet-security'</msg>
-<status status="PASS" endtime="20151111 10:25:49.952" starttime="20151111 10:25:26.426"></status>
+<msg timestamp="20151207 11:50:21.758" level="INFO">Opening browser 'firefox' to base url 'https://www2.f-secure.gtn/ru_RU/web/home_ru/internet-security'</msg>
+<status status="PASS" endtime="20151207 11:50:43.852" starttime="20151207 11:50:21.757"></status>
 </kw>
-<status status="PASS" endtime="20151111 10:25:49.976" starttime="20151111 10:25:26.425"></status>
+<status status="PASS" endtime="20151207 11:50:43.853" starttime="20151207 11:50:21.756"></status>
 </kw>
-<test id="s1-t1" name="Element 1">
-<kw name="Element Should Contain">
+<test id="s1-t1" name="Test Multiprice for Global site">
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
 <arguments>
-<arg>1</arg>
-<arg>12</arg>
-<arg>30</arg>
-<arg>20</arg>
+<arg>${POSITION}==0</arg>
 </arguments>
-<kw name="Wait Until Page Contains" library="Selenium2Library">
-<doc>Waits until `text` appears on current page.</doc>
+<status status="PASS" endtime="20151207 11:50:43.856" starttime="20151207 11:50:43.855"></status>
+</kw>
+<kw name="Locate Device">
 <arguments>
-<arg>${devices}</arg>
+<arg>${locator_devices_1}</arg>
+<arg>${devices_1}</arg>
+<arg>${POSITION}</arg>
+<arg>device</arg>
 </arguments>
-<status status="PASS" endtime="20151111 10:25:52.265" starttime="20151111 10:25:49.979"></status>
-</kw>
-<kw name="Page Should Contain Element" library="Selenium2Library">
-<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
 <arguments>
-<arg>//span[@class="fmp-devices"]</arg>
+<arg>${locator_devices}</arg>
 </arguments>
-<msg timestamp="20151111 10:25:52.318" level="INFO">Current page contains element '//span[@class="fmp-devices"]'.</msg>
-<status status="PASS" endtime="20151111 10:25:52.319" starttime="20151111 10:25:52.266"></status>
+<assign>
+<var>${locate_devices}</var>
+</assign>
+<msg timestamp="20151207 11:50:47.453" level="INFO">${locate_devices} = 1 устройство</msg>
+<status status="PASS" endtime="20151207 11:50:47.453" starttime="20151207 11:50:43.858"></status>
 </kw>
-<kw name="Wait Until Page Contains" library="Selenium2Library">
-<doc>Waits until `text` appears on current page.</doc>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
 <arguments>
-<arg>${months}</arg>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_devices}</arg>
+<arg>${devices} ${singular_plural_devices}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_devices}</arg>
+<arg>${devices} ${singular_plural_devices}</arg>
 </arguments>
-<status status="PASS" endtime="20151111 10:25:52.367" starttime="20151111 10:25:52.319"></status>
-</kw>
-<kw name="Page Should Contain Element" library="Selenium2Library">
-<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
 <arguments>
-<arg>//span[@class="fmp-months"]</arg>
+<arg>${locate_devices}</arg>
+<arg>${devices} ${singular_plural_devices}</arg>
 </arguments>
-<msg timestamp="20151111 10:25:52.446" level="INFO">Current page contains element '//span[@class="fmp-months"]'.</msg>
-<status status="PASS" endtime="20151111 10:25:52.447" starttime="20151111 10:25:52.368"></status>
+<msg timestamp="20151207 11:50:47.461" level="FAIL">1 устройство != 1 device</msg>
+<status status="FAIL" endtime="20151207 11:50:47.461" starttime="20151207 11:50:47.459"></status>
 </kw>
-<kw name="Wait Until Page Contains" library="Selenium2Library">
-<doc>Waits until `text` appears on current page.</doc>
-<arguments>
-<arg>${price}</arg>
-</arguments>
-<status status="PASS" endtime="20151111 10:25:52.515" starttime="20151111 10:25:52.447"></status>
+<status status="FAIL" endtime="20151207 11:50:47.462" starttime="20151207 11:50:47.454"></status>
 </kw>
-<kw name="Page Should Contain Element" library="Selenium2Library">
-<doc>Verifies element identified by `locator` is found on the current page.</doc>
-<arguments>
-<arg>//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]</arg>
-</arguments>
-<msg timestamp="20151111 10:25:52.557" level="INFO">Current page contains element '//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]'.</msg>
-<status status="PASS" endtime="20151111 10:25:52.559" starttime="20151111 10:25:52.516"></status>
+<status status="FAIL" endtime="20151207 11:50:47.462" starttime="20151207 11:50:43.857"></status>
 </kw>
-<kw name="Wait Until Page Contains" library="Selenium2Library">
-<doc>Waits until `text` appears on current page.</doc>
-<arguments>
-<arg>${promo-price}</arg>
-</arguments>
-<status status="PASS" endtime="20151111 10:25:52.604" starttime="20151111 10:25:52.559"></status>
-</kw>
-<kw name="Page Should Contain Element" library="Selenium2Library">
-<doc>Verifies element identified by `locator` is found on the current page.</doc>
-<arguments>
-<arg>//span[@class="fmp-price fmp-promo-price"]</arg>
-</arguments>
-<msg timestamp="20151111 10:25:52.634" level="INFO">Current page contains element '//span[@class="fmp-price fmp-promo-price"]'.</msg>
-<status status="PASS" endtime="20151111 10:25:52.635" starttime="20151111 10:25:52.605"></status>
-</kw>
-<status status="PASS" endtime="20151111 10:25:52.635" starttime="20151111 10:25:49.978"></status>
-</kw>
-<status status="PASS" endtime="20151111 10:25:52.636" critical="yes" starttime="20151111 10:25:49.977"></status>
+<status status="FAIL" endtime="20151207 11:50:47.464" critical="yes" starttime="20151207 11:50:43.854">1 устройство != 1 device</status>
 </test>
-<test id="s1-t2" name="Element 2">
-<kw name="Element Should Contain">
+<test id="s1-t2" name="Test Multiprice for Russian site">
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
 <arguments>
-<arg>3</arg>
-<arg>24</arg>
-<arg>70</arg>
-<arg>60</arg>
+<arg>${POSITION}==1</arg>
 </arguments>
-<kw name="Wait Until Page Contains" library="Selenium2Library">
-<doc>Waits until `text` appears on current page.</doc>
+<status status="PASS" endtime="20151207 11:50:47.468" starttime="20151207 11:50:47.467"></status>
+</kw>
+<kw name="Locate Device">
 <arguments>
-<arg>${devices}</arg>
+<arg>${locator_devices_1}</arg>
+<arg>${devices_1}</arg>
+<arg>${POSITION}</arg>
+<arg>устройство</arg>
 </arguments>
-<status status="PASS" endtime="20151111 10:25:52.779" starttime="20151111 10:25:52.639"></status>
-</kw>
-<kw name="Page Should Contain Element" library="Selenium2Library">
-<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
 <arguments>
-<arg>//span[@class="fmp-devices"]</arg>
+<arg>${locator_devices}</arg>
 </arguments>
-<msg timestamp="20151111 10:25:52.803" level="INFO">Current page contains element '//span[@class="fmp-devices"]'.</msg>
-<status status="PASS" endtime="20151111 10:25:52.804" starttime="20151111 10:25:52.780"></status>
+<assign>
+<var>${locate_devices}</var>
+</assign>
+<msg timestamp="20151207 11:50:47.595" level="INFO">${locate_devices} = 1 устройство</msg>
+<status status="PASS" endtime="20151207 11:50:47.595" starttime="20151207 11:50:47.471"></status>
 </kw>
-<kw name="Wait Until Page Contains" library="Selenium2Library">
-<doc>Waits until `text` appears on current page.</doc>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
 <arguments>
-<arg>${months}</arg>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_devices}</arg>
+<arg>${devices} ${singular_plural_devices}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_devices}</arg>
+<arg>${devices} ${singular_plural_devices}</arg>
 </arguments>
-<status status="PASS" endtime="20151111 10:25:52.842" starttime="20151111 10:25:52.804"></status>
-</kw>
-<kw name="Page Should Contain Element" library="Selenium2Library">
-<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
 <arguments>
-<arg>//span[@class="fmp-months"]</arg>
+<arg>${locate_devices}</arg>
+<arg>${devices} ${singular_plural_devices}</arg>
 </arguments>
-<msg timestamp="20151111 10:25:52.863" level="INFO">Current page contains element '//span[@class="fmp-months"]'.</msg>
-<status status="PASS" endtime="20151111 10:25:52.864" starttime="20151111 10:25:52.843"></status>
+<status status="PASS" endtime="20151207 11:50:47.603" starttime="20151207 11:50:47.601"></status>
 </kw>
-<kw name="Wait Until Page Contains" library="Selenium2Library">
-<doc>Waits until `text` appears on current page.</doc>
+<status status="PASS" endtime="20151207 11:50:47.604" starttime="20151207 11:50:47.596"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:47.604" starttime="20151207 11:50:47.469"></status>
+</kw>
+<kw name="Locate Months">
 <arguments>
-<arg>${price}</arg>
+<arg>${locator_months_1}</arg>
+<arg>${months_1}</arg>
+<arg>${POSITION}</arg>
+<arg>Месяцев:</arg>
 </arguments>
-<status status="PASS" endtime="20151111 10:25:52.896" starttime="20151111 10:25:52.865"></status>
-</kw>
-<kw name="Page Should Contain Element" library="Selenium2Library">
-<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
 <arguments>
-<arg>//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]</arg>
+<arg>${locator_months}</arg>
 </arguments>
-<msg timestamp="20151111 10:25:52.915" level="INFO">Current page contains element '//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]'.</msg>
-<status status="PASS" endtime="20151111 10:25:52.916" starttime="20151111 10:25:52.896"></status>
+<assign>
+<var>${locate_months}</var>
+</assign>
+<msg timestamp="20151207 11:50:47.663" level="INFO">${locate_months} = Месяцев: 12</msg>
+<status status="PASS" endtime="20151207 11:50:47.663" starttime="20151207 11:50:47.606"></status>
 </kw>
-<kw name="Wait Until Page Contains" library="Selenium2Library">
-<doc>Waits until `text` appears on current page.</doc>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
 <arguments>
-<arg>${promo-price}</arg>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_months}</arg>
+<arg>${months} ${singular_plural_months}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_months}</arg>
+<arg>${singular_plural_months} ${months}</arg>
 </arguments>
-<status status="PASS" endtime="20151111 10:25:52.955" starttime="20151111 10:25:52.916"></status>
-</kw>
-<kw name="Page Should Contain Element" library="Selenium2Library">
-<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
 <arguments>
-<arg>//span[@class="fmp-price fmp-promo-price"]</arg>
+<arg>${locate_months}</arg>
+<arg>${singular_plural_months} ${months}</arg>
 </arguments>
-<msg timestamp="20151111 10:25:52.983" level="INFO">Current page contains element '//span[@class="fmp-price fmp-promo-price"]'.</msg>
-<status status="PASS" endtime="20151111 10:25:52.984" starttime="20151111 10:25:52.956"></status>
+<status status="PASS" endtime="20151207 11:50:47.670" starttime="20151207 11:50:47.669"></status>
 </kw>
-<status status="PASS" endtime="20151111 10:25:52.985" starttime="20151111 10:25:52.638"></status>
+<status status="PASS" endtime="20151207 11:50:47.671" starttime="20151207 11:50:47.664"></status>
 </kw>
-<status status="PASS" endtime="20151111 10:25:52.985" critical="yes" starttime="20151111 10:25:52.637"></status>
+<status status="PASS" endtime="20151207 11:50:47.671" starttime="20151207 11:50:47.605"></status>
+</kw>
+<kw name="Locate Price">
+<arguments>
+<arg>${locator_price_1}</arg>
+<arg>${price_1}</arg>
+<arg>${POSITION}</arg>
+</arguments>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
+<arguments>
+<arg>${locator_price}</arg>
+</arguments>
+<assign>
+<var>${locate_price}</var>
+</assign>
+<msg timestamp="20151207 11:50:47.727" level="INFO">${locate_price} = 30 €</msg>
+<status status="PASS" endtime="20151207 11:50:47.727" starttime="20151207 11:50:47.673"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_price}</arg>
+<arg>${CURRENCY}${price}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_price}</arg>
+<arg>${price} ${CURRENCY}</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${locate_price}</arg>
+<arg>${price} ${CURRENCY}</arg>
+</arguments>
+<status status="PASS" endtime="20151207 11:50:47.734" starttime="20151207 11:50:47.733"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:47.735" starttime="20151207 11:50:47.728"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:47.735" starttime="20151207 11:50:47.672"></status>
+</kw>
+<kw name="Locate Promo Price">
+<arguments>
+<arg>${locator_promo-price_1}</arg>
+<arg>${promo-price_1}</arg>
+<arg>${POSITION}</arg>
+</arguments>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
+<arguments>
+<arg>${locator_promo-price}</arg>
+</arguments>
+<assign>
+<var>${locate_promo-price}</var>
+</assign>
+<msg timestamp="20151207 11:50:47.800" level="INFO">${locate_promo-price} = 20 €</msg>
+<status status="PASS" endtime="20151207 11:50:47.800" starttime="20151207 11:50:47.737"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_promo-price}</arg>
+<arg>${CURRENCY}${promo-price}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_promo-price}</arg>
+<arg>${promo-price} ${CURRENCY}</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${locate_promo-price}</arg>
+<arg>${promo-price} ${CURRENCY}</arg>
+</arguments>
+<status status="PASS" endtime="20151207 11:50:47.807" starttime="20151207 11:50:47.806"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:47.808" starttime="20151207 11:50:47.801"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:47.808" starttime="20151207 11:50:47.736"></status>
+</kw>
+<kw name="Locate Devices">
+<arguments>
+<arg>${locator_devices_2}</arg>
+<arg>${devices_2}</arg>
+<arg>${POSITION}</arg>
+<arg>Устройств:</arg>
+</arguments>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
+<arguments>
+<arg>${locator_devices}</arg>
+</arguments>
+<assign>
+<var>${locate_devices}</var>
+</assign>
+<msg timestamp="20151207 11:50:47.875" level="INFO">${locate_devices} = Устройств: 3</msg>
+<status status="PASS" endtime="20151207 11:50:47.875" starttime="20151207 11:50:47.810"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_devices}</arg>
+<arg>${devices} ${singular_plural_devices}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_devices}</arg>
+<arg>${singular_plural_devices} ${devices}</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${locate_devices}</arg>
+<arg>${singular_plural_devices} ${devices}</arg>
+</arguments>
+<status status="PASS" endtime="20151207 11:50:47.882" starttime="20151207 11:50:47.880"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:47.882" starttime="20151207 11:50:47.875"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:47.883" starttime="20151207 11:50:47.809"></status>
+</kw>
+<kw name="Locate Months">
+<arguments>
+<arg>${locator_months_2}</arg>
+<arg>${months_2}</arg>
+<arg>${POSITION}</arg>
+<arg>Месяцев:</arg>
+</arguments>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
+<arguments>
+<arg>${locator_months}</arg>
+</arguments>
+<assign>
+<var>${locate_months}</var>
+</assign>
+<msg timestamp="20151207 11:50:47.960" level="INFO">${locate_months} = Месяцев: 24</msg>
+<status status="PASS" endtime="20151207 11:50:47.960" starttime="20151207 11:50:47.885"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_months}</arg>
+<arg>${months} ${singular_plural_months}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_months}</arg>
+<arg>${singular_plural_months} ${months}</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${locate_months}</arg>
+<arg>${singular_plural_months} ${months}</arg>
+</arguments>
+<status status="PASS" endtime="20151207 11:50:47.968" starttime="20151207 11:50:47.966"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:47.968" starttime="20151207 11:50:47.961"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:47.969" starttime="20151207 11:50:47.883"></status>
+</kw>
+<kw name="Locate Price">
+<arguments>
+<arg>${locator_price_2}</arg>
+<arg>${price_2}</arg>
+<arg>${POSITION}</arg>
+</arguments>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
+<arguments>
+<arg>${locator_price}</arg>
+</arguments>
+<assign>
+<var>${locate_price}</var>
+</assign>
+<msg timestamp="20151207 11:50:48.033" level="INFO">${locate_price} = 70 €</msg>
+<status status="PASS" endtime="20151207 11:50:48.033" starttime="20151207 11:50:47.971"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_price}</arg>
+<arg>${CURRENCY}${price}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_price}</arg>
+<arg>${price} ${CURRENCY}</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${locate_price}</arg>
+<arg>${price} ${CURRENCY}</arg>
+</arguments>
+<status status="PASS" endtime="20151207 11:50:48.040" starttime="20151207 11:50:48.039"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:48.041" starttime="20151207 11:50:48.034"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:48.041" starttime="20151207 11:50:47.970"></status>
+</kw>
+<kw name="Locate Promo Price">
+<arguments>
+<arg>${locator_promo-price_2}</arg>
+<arg>${promo-price_2}</arg>
+<arg>${POSITION}</arg>
+</arguments>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
+<arguments>
+<arg>${locator_promo-price}</arg>
+</arguments>
+<assign>
+<var>${locate_promo-price}</var>
+</assign>
+<msg timestamp="20151207 11:50:48.101" level="INFO">${locate_promo-price} = 60 €</msg>
+<status status="PASS" endtime="20151207 11:50:48.101" starttime="20151207 11:50:48.043"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_promo-price}</arg>
+<arg>${CURRENCY}${promo-price}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_promo-price}</arg>
+<arg>${promo-price} ${CURRENCY}</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${locate_promo-price}</arg>
+<arg>${promo-price} ${CURRENCY}</arg>
+</arguments>
+<status status="PASS" endtime="20151207 11:50:48.108" starttime="20151207 11:50:48.107"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:48.109" starttime="20151207 11:50:48.102"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:48.110" starttime="20151207 11:50:48.042"></status>
+</kw>
+<kw name="Locate Devices">
+<arguments>
+<arg>${locator_devices_3}</arg>
+<arg>${devices_3}</arg>
+<arg>${POSITION}</arg>
+<arg>Устройств:</arg>
+</arguments>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
+<arguments>
+<arg>${locator_devices}</arg>
+</arguments>
+<assign>
+<var>${locate_devices}</var>
+</assign>
+<msg timestamp="20151207 11:50:48.178" level="INFO">${locate_devices} = Устройств: 3</msg>
+<status status="PASS" endtime="20151207 11:50:48.178" starttime="20151207 11:50:48.112"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_devices}</arg>
+<arg>${devices} ${singular_plural_devices}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_devices}</arg>
+<arg>${singular_plural_devices} ${devices}</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${locate_devices}</arg>
+<arg>${singular_plural_devices} ${devices}</arg>
+</arguments>
+<status status="PASS" endtime="20151207 11:50:48.186" starttime="20151207 11:50:48.184"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:48.186" starttime="20151207 11:50:48.178"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:48.187" starttime="20151207 11:50:48.110"></status>
+</kw>
+<kw name="Locate Months">
+<arguments>
+<arg>${locator_months_3}</arg>
+<arg>${months_3}</arg>
+<arg>${POSITION}</arg>
+<arg>Месяцев:</arg>
+</arguments>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
+<arguments>
+<arg>${locator_months}</arg>
+</arguments>
+<assign>
+<var>${locate_months}</var>
+</assign>
+<msg timestamp="20151207 11:50:48.245" level="INFO">${locate_months} = Месяцев: 36</msg>
+<status status="PASS" endtime="20151207 11:50:48.245" starttime="20151207 11:50:48.189"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_months}</arg>
+<arg>${months} ${singular_plural_months}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_months}</arg>
+<arg>${singular_plural_months} ${months}</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${locate_months}</arg>
+<arg>${singular_plural_months} ${months}</arg>
+</arguments>
+<status status="PASS" endtime="20151207 11:50:48.253" starttime="20151207 11:50:48.251"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:48.253" starttime="20151207 11:50:48.246"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:48.254" starttime="20151207 11:50:48.187"></status>
+</kw>
+<kw name="Locate Promo Price">
+<arguments>
+<arg>${locator_promo-price_3}</arg>
+<arg>${promo-price_3}</arg>
+<arg>${POSITION}</arg>
+</arguments>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of element identified by `locator`.</doc>
+<arguments>
+<arg>${locator_promo-price}</arg>
+</arguments>
+<assign>
+<var>${locate_promo-price}</var>
+</assign>
+<msg timestamp="20151207 11:50:48.310" level="INFO">${locate_promo-price} = 99 €</msg>
+<status status="PASS" endtime="20151207 11:50:48.310" starttime="20151207 11:50:48.256"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${POSITION}==0</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_promo-price}</arg>
+<arg>${CURRENCY}${promo-price}</arg>
+<arg>ELSE IF</arg>
+<arg>${POSITION}==1</arg>
+<arg>Should Be Equal</arg>
+<arg>${locate_promo-price}</arg>
+<arg>${promo-price} ${CURRENCY}</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${locate_promo-price}</arg>
+<arg>${promo-price} ${CURRENCY}</arg>
+</arguments>
+<status status="PASS" endtime="20151207 11:50:48.317" starttime="20151207 11:50:48.316"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:48.318" starttime="20151207 11:50:48.311"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:48.318" starttime="20151207 11:50:48.255"></status>
+</kw>
+<status status="PASS" endtime="20151207 11:50:48.319" critical="yes" starttime="20151207 11:50:47.466"></status>
 </test>
-<test id="s1-t3" name="Element 3">
-<kw name="Element Without Promo">
-<arguments>
-<arg>3</arg>
-<arg>36</arg>
-<arg>99</arg>
-</arguments>
-<kw name="Wait Until Page Contains" library="Selenium2Library">
-<doc>Waits until `text` appears on current page.</doc>
-<arguments>
-<arg>${devices}</arg>
-</arguments>
-<status status="PASS" endtime="20151111 10:25:53.091" starttime="20151111 10:25:52.988"></status>
-</kw>
-<kw name="Page Should Contain Element" library="Selenium2Library">
-<doc>Verifies element identified by `locator` is found on the current page.</doc>
-<arguments>
-<arg>xpath=//span[@class="fmp-devices"]</arg>
-</arguments>
-<msg timestamp="20151111 10:25:53.113" level="INFO">Current page contains element 'xpath=//span[@class="fmp-devices"]'.</msg>
-<status status="PASS" endtime="20151111 10:25:53.114" starttime="20151111 10:25:53.091"></status>
-</kw>
-<kw name="Wait Until Page Contains" library="Selenium2Library">
-<doc>Waits until `text` appears on current page.</doc>
-<arguments>
-<arg>${months}</arg>
-</arguments>
-<status status="PASS" endtime="20151111 10:25:53.155" starttime="20151111 10:25:53.114"></status>
-</kw>
-<kw name="Page Should Contain Element" library="Selenium2Library">
-<doc>Verifies element identified by `locator` is found on the current page.</doc>
-<arguments>
-<arg>//span[@class="fmp-months"]</arg>
-</arguments>
-<msg timestamp="20151111 10:25:53.184" level="INFO">Current page contains element '//span[@class="fmp-months"]'.</msg>
-<status status="PASS" endtime="20151111 10:25:53.185" starttime="20151111 10:25:53.155"></status>
-</kw>
-<kw name="Wait Until Page Contains" library="Selenium2Library">
-<doc>Waits until `text` appears on current page.</doc>
-<arguments>
-<arg>${promo-price}</arg>
-</arguments>
-<status status="PASS" endtime="20151111 10:25:53.219" starttime="20151111 10:25:53.186"></status>
-</kw>
-<kw name="Page Should Contain Element" library="Selenium2Library">
-<doc>Verifies element identified by `locator` is found on the current page.</doc>
-<arguments>
-<arg>//span[@class="fmp-price fmp-promo-price"]</arg>
-</arguments>
-<msg timestamp="20151111 10:25:53.242" level="INFO">Current page contains element '//span[@class="fmp-price fmp-promo-price"]'.</msg>
-<status status="PASS" endtime="20151111 10:25:53.243" starttime="20151111 10:25:53.219"></status>
-</kw>
-<status status="PASS" endtime="20151111 10:25:53.244" starttime="20151111 10:25:52.987"></status>
-</kw>
-<status status="PASS" endtime="20151111 10:25:53.245" critical="yes" starttime="20151111 10:25:52.986"></status>
-</test>
-<status status="PASS" endtime="20151111 10:25:53.247" starttime="20151111 10:25:25.965"></status>
+<status status="FAIL" endtime="20151207 11:50:48.320" starttime="20151207 11:50:21.559"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="0" pass="3">Critical Tests</stat>
-<stat fail="0" pass="3">All Tests</stat>
+<stat fail="1" pass="1">Critical Tests</stat>
+<stat fail="1" pass="1">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat fail="0" id="s1" name="Multiprice3" pass="3">Multiprice3</stat>
+<stat fail="1" id="s1" name="Multiprice17" pass="1">Multiprice17</stat>
 </suite>
 </statistics>
 <errors>
