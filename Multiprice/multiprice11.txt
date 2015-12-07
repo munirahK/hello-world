@@ -5,7 +5,7 @@ Suite Setup	Go to Internet Security
 *** Variables ***
 ${HOMEPAGE}		https://${DOMAIN}/${LOCALES}/web/home_${SITE}/internet-security
 ${BROWSER}		firefox
-${LOCALES}		ru
+${LOCALES}		ru_RU
 ${DOMAIN}		www2.f-secure.gtn
 ${SITE}			ru
 

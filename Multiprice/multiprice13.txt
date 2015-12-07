@@ -67,6 +67,8 @@ Test Multiprice for SKU Test1D12M
 	Locate Months		${locator_months_1}	${months_1}
 	Locate Price		${locator_price_1}	${price_1}	${POSITION}
 	Locate Promo Price	${locator_promo-price_1}	${promo-price_1}	${POSITION}	
+	
+	
 
 Test Multiprice for SKU Test3D24M
 	Locate Devices		${locator_devices_2}	${devices_2}
@@ -74,11 +76,13 @@ Test Multiprice for SKU Test3D24M
 	Locate Price		${locator_price_2}	${price_2}	${POSITION}
 	Locate Promo Price	${locator_promo-price_2}	${promo-price_2}	${POSITION}
 	
+	
 Test Multiprice for SKU Test3D36M
 	Locate Devices		${locator_devices_3}	${devices_3}
 	Locate Months		${locator_months_3}	${months_3}
 	Locate Promo Price	${locator_promo-price_3}	${promo-price_3}	${POSITION}
-
+	
+	
 Test Multiprice for SKU Test1D48M
 	Locate Devices		${locator_devices_4}	${devices_4}
 	Locate Months		${locator_months_4}	${months_4}
@@ -88,17 +92,20 @@ Test Multiprice for SKU Test1D48M
 
 
 
+
 *** Keywords ***
 Locate Devices
 	[Arguments]	${locator_devices}	${devices}
 	${locate_devices}	Get Text	${locator_devices}
-	Page Should Contain		${locate_devices}	${devices}
-	
+	Page Should Contain		${locate_devices}	${devices}	
+
+
 Locate Months
 	[Arguments]	${locator_months}	${months}
 	${locate_months}	Get Text	${locator_months}
 	Run Keyword If	${position}==0	Should Be Equal		${locate_months}	${months} months
 	...	ELSE IF	${position}==1	Should Be Equal		${locate_months}	Месяцев: ${months}
+			
 
 Locate Price
 	[Arguments]	${locator_price}	${price}	${position}
@@ -112,10 +119,9 @@ Locate Promo Price
 	Run Keyword If	${position}==0	Should Be Equal		${locate_promo-price}	${CURRENCY}${promo-price}
 	...	ELSE IF	${position}==1	Should Be Equal		${locate_promo-price}	${promo-price} ${CURRENCY}
 
+
+
 Go to Internet Security	
 	Open browser	${HOMEPAGE}		${BROWSER}
 
-
-
-	
 

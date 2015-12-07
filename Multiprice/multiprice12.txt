@@ -15,8 +15,8 @@ ${POSITION}		0, 1
 # Multiprice for SKU Test1D12M
 ${devices_1}		1
 ${months_1}		12
-${price_1}		30
-${promo-price_1}	30
+${price_1}		10
+${promo-price_1}	20
 
 # Multiprice for SKU Test3D24M
 ${devices_2}		3
@@ -44,10 +44,10 @@ ${locator_Test1D48M}		//div[@class="table-row"][@data-product="IS"][@data-sku="T
 
 # Locator for devices, months, price, and promo price
 
-${locator_devices}		//span[@class="fmp-devices"]
-${locator_months}		//span[@class="fmp-months"]
-${locator_price}		//span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
-${locator_promo-price}		//span[@class="fmp-price fmp-promo-price"]
+${locator_devices}		/div/span/span[@class="fmp-devices"]
+${locator_months}		/div/span/span[@class="fmp-months"]
+${locator_price}		/div/span[@class="font-pink fmp-onlypromo"]//s[@class="fmp-price"]
+${locator_promo-price}		/div/span[@class="fmp-price fmp-promo-price"]
 
 
 
@@ -93,16 +93,13 @@ Locate Months
 Locate Price
 	[Arguments]	${locator_price}	${price}	${position}
 	${locate_price}		Get Text	${locator_price}
-	${0} = 	Set Variable	Currency sign is left
-	${1} =	Set Variable	Currency sign is right
-	Run Keyword If	${position}==0	Page Should Contain	${CURRENCY}${price}
-	...	ELSE IF	${position}==1	Page Should Contain	${price} ${CURRENCY}
+	Run Keyword If	${position}==0	
+	...	ELSE IF	${position}==1		
+
 
 Locate Promo Price
 	[Arguments]	${locator_promo-price}	${promo-price}	${position}
 	${locate_promo-price}	Get Text	${locator_promo-price}
-	${0} = 	Set Variable	Currency sign is left
-	${1} =	Set Variable	Currency sign is right
 	Run Keyword If	${position}==0	Page Should Contain	${CURRENCY}${promo-price}
 	...	ELSE IF	${position}==1	Page Should Contain	${promo-price} ${CURRENCY}
 
