@@ -9,7 +9,7 @@ ${LOCALES}		en, ru_RU
 ${DOMAIN}		www2.f-secure.gtn
 ${SITE}			global, ru
 ${CURRENCY}		€, £, $, py6, MYR
-${POSITION}		0, 1
+${COUNTRY}              0, 1
 
 
 # Multiprice for SKU Test1D12M
@@ -64,50 +64,50 @@ ${locator_promo-price_4}	//div[@class="table-row"][@data-sku="Test1D48M"][@data-
 
 Test Multiprice for Global site
 	
-	Set Variable	${POSITION}==0	
+	Set Variable	${COUNTRY}==0	
 	#Multiprice for SKU Test1D12M
-	Locate Device		${locator_devices_1}	${devices_1}	${POSITION}	device
-	Locate Months		${locator_months_1}	${months_1}	${POSITION}	months
-	Locate Price		${locator_price_1}	${price_1}	${POSITION}
-	Locate Promo Price	${locator_promo-price_1}	${promo-price_1}	${POSITION}
+	Locate Devices		${locator_devices_1}	${devices_1}	0	device
+	Locate Months		${locator_months_1}	${months_1}	0	months
+	Locate Price		${locator_price_1}	${price_1}	0
+	Locate Promo Price	${locator_promo-price_1}	${promo-price_1}	0
 
 	#Multiprice for SKU Test3D24M
-	Locate Devices		${locator_devices_2}	${devices_2}	${POSITION}	devices
-	Locate Months		${locator_months_2}	${months_2}	${POSITION}	months
-	Locate Price		${locator_price_2}	${price_2}	${POSITION}
-	Locate Promo Price	${locator_promo-price_2}	${promo-price_2}	${POSITION}
+	Locate Devices		${locator_devices_2}	${devices_2}	0	devices
+	Locate Months		${locator_months_2}	${months_2}	0	months
+	Locate Price		${locator_price_2}	${price_2}	0
+	Locate Promo Price	${locator_promo-price_2}	${promo-price_2}	0
 
 	#Multiprice for SKU Test3D36M
-	Locate Devices		${locator_devices_2}	${devices_2}	${POSITION}	devices
-	Locate Months		${locator_months_2}	${months_2}	${POSITION}	months
-	Locate Promo Price	${locator_promo-price_3}	${promo-price_3}	${POSITION}
+	Locate Devices		${locator_devices_2}	${devices_2}	0	devices
+	Locate Months		${locator_months_2}	${months_2}	0	months
+	Locate Promo Price	${locator_promo-price_3}	${promo-price_3}	0
 
 	#Multiprice for SKU Test1D48M
-	Locate Devices		${locator_devices_4}	${devices_4}	${POSITION}	device
-	Locate Months		${locator_months_4}	${months_4}	${POSITION}	months
-	Locate Price		${locator_price_4}	${price_4}	${POSITION}
-	Locate Promo Price	${locator_promo-price_4}	${promo-price_4}	${POSITION}
+	Locate Devices		${locator_devices_4}	${devices_4}	0	device
+	Locate Months		${locator_months_4}	${months_4}	0	months
+	Locate Price		${locator_price_4}	${price_4}	0
+	Locate Promo Price	${locator_promo-price_4}	${promo-price_4}	0
 
 
 Test Multiprice for Russian site
-	Set Variable	${POSITION}==1
+	Set Variable	${COUNTRY}==1
 	#Multiprice for SKU Test1D12M
-	Locate Device		${locator_devices_1}	${devices_1}	${POSITION}	устройство
-	Locate Months		${locator_months_1}	${months_1}	${POSITION}	Месяцев:
-	Locate Price		${locator_price_1}	${price_1}	${POSITION}
-	Locate Promo Price	${locator_promo-price_1}	${promo-price_1}	${POSITION}
+	Locate Devices		${locator_devices_1}	${devices_1}	0	устройство
+	Locate Months		${locator_months_1}	${months_1}	1	Месяцев:
+	Locate Price		${locator_price_1}	${price_1}	1
+	Locate Promo Price	${locator_promo-price_1}	${promo-price_1}	1
 	
 	#Multiprice for SKU Test3D24M
-	Locate Devices		${locator_devices_2}	${devices_2}	${POSITION}	Устройств:
-	Locate Months		${locator_months_2}	${months_2}	${POSITION}	Месяцев:
-	Locate Price		${locator_price_2}	${price_2}	${POSITION}
-	Locate Promo Price	${locator_promo-price_2}	${promo-price_2}	${POSITION}
+	Locate Devices		${locator_devices_2}	${devices_2}	1	Устройств:
+	Locate Months		${locator_months_2}	${months_2}	1	Месяцев:
+	Locate Price		${locator_price_2}	${price_2}	1
+	Locate Promo Price	${locator_promo-price_2}	${promo-price_2}	1
 
 	
 	#Multiprice for SKU Test3D36M
-	Locate Devices		${locator_devices_3}	${devices_3}	${POSITION}	Устройств:
-	Locate Months		${locator_months_3}	${months_3}	${POSITION}	Месяцев: 
-	Locate Promo Price	${locator_promo-price_3}	${promo-price_3}	${POSITION}
+	Locate Devices		${locator_devices_3}	${devices_3}	1	Устройств:
+	Locate Months		${locator_months_3}	${months_3}	1	Месяцев: 
+	Locate Promo Price	${locator_promo-price_3}	${promo-price_3}	1
 	
 
 
@@ -116,11 +116,7 @@ Test Multiprice for Russian site
 
 *** Keywords ***
 
-Locate Device	
-	[Arguments]	${locator_devices}	${devices}	${POSITION}	${singular_plural_devices}
-	${locate_devices}	Get Text	${locator_devices}
-	Run Keyword If	${POSITION}==0	Should Be Equal		${locate_devices}	${devices} ${singular_plural_devices}
-	...	ELSE IF	${POSITION}==1	Should Be Equal		${locate_devices}	${devices} ${singular_plural_devices}
+
 
 Locate Devices	
 	[Arguments]	${locator_devices}	${devices}	${POSITION}	${singular_plural_devices}
